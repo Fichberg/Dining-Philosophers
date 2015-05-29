@@ -15,21 +15,9 @@ public class Dinner
 		set_philosophers(data.get_philosophers());
 		set_food(data.get_food());
 		set_mode(data.get_mode());
-/*
 
-
-		for(int i = 1; i < 10; i++)
-		{	
-			Philosopher p = new Philosopher(i);
-			philosopher.add(p);
-			
-		}
-*/
-		for (Philosopher p : philosopher) 
-		{
-			(new Thread(p)).start();
-//			System.out.println("Philosopher "+p+" number " +p.get_number());
-		}
+		//Create threads
+		for (Philosopher p : philosopher) (new Thread(p)).start();
 	}
 
 	//Setters
