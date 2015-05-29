@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class InputReader
 {
-	//private String fname;
 	private ArrayList<Philosopher> philosopher = new ArrayList<Philosopher>();
 	private int philosophers;
 	private int food;

@@ -1,7 +1,11 @@
 import java.util.ArrayList;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Dinner
 {
+	final static Lock lock = new ReentrantLock(true);
 	private static ArrayList<Philosopher> philosopher;
 	private static int philosophers;
 	private static int food;
@@ -22,23 +26,29 @@ public class Dinner
 
 	//Setters
 	/*****************************************************/
-	private static void set_philosopher(ArrayList<Philosopher> philosopher_list)
+	public static void set_philosopher(ArrayList<Philosopher> philosopher_list)
 	{
 		philosopher = philosopher_list;
 	}
 
-	private static void set_philosophers(int total_philosophers)
+	public static void set_philosophers(int total_philosophers)
 	{
 		philosophers = total_philosophers;
 	}
 
-	private static void set_food(int food_quantity)
+	public static void set_food(int food_quantity)
 	{ 
 		food = food_quantity;
 	}
 
-	private static void set_mode(char selected_mode)
+	public static void set_mode(char selected_mode)
 	{
 		mode = selected_mode;
+	}
+	//Getters
+	/*****************************************************/
+	public static int get_food()
+	{
+		return food;
 	}
 }
