@@ -1,18 +1,17 @@
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.Random;
 
 public class Philosopher implements Runnable
 {
-	private boolean[] forks;
 	private int number;
 	private int weight;
 	private int consumed;
 	private State state;
 
-	public Philosopher(int number, int weight, boolean[] forks)
+	public Philosopher(int number, int weight)
 	{
-		this.forks = forks;
 		this.number = number;
 		this.weight = weight;
 		this.consumed = 0;
@@ -21,26 +20,12 @@ public class Philosopher implements Runnable
 
 	public void run()
 	{
-		while(Dinner.get_food() > 0)
+		while(Monitor.get_food() > 0)
 		{
-			Dinner.lock.lock();
-			try {
-				if(Dinner.get_food() > 0)
-				{
-					if(is_thinking()) change_state();
-					System.out.println("Philosopher" + this.number+" is " + this.state);
-					System.out.println("Philosopher " + this.number + " weight " + this.weight);
-					System.out.println("Yaaaaam " + Dinner.get_food()) ;
-					consume();
-					System.out.println("Awww... One less " + Dinner.get_food());
-				}		
-			} finally {
-	            Dinner.lock.unlock();
-	            if(is_eating()) change_state();
-	            System.out.println("Philosopher" + this.number+" is " + this.state);
-	            //Aqui ele precisa esperar
-
-	        }
+			think();
+			//TODO: Monitor.get_fork
+			eat();
+			//TODO: Monitor.put.fork
 		}
 
 		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
@@ -67,17 +52,49 @@ public class Philosopher implements Runnable
 	private boolean is_eating() { return this.state == State.EATING; }
 
 	//Consumes the food from the dinner
-	public void consume() 
+	private void eat() 
 	{ 
-		if(Dinner.get_mode() == 'U') 
+		Monitor.food_lock.lock();
+		try 
 		{
-			Dinner.set_food(Dinner.get_food() - 1);
-			this.consumed += 1;
+			if(Monitor.get_food() > 0)
+			{
+				if(is_thinking()) change_state();
+				if(Dinner.get_mode() == 'U') 
+				{
+					Monitor.set_food(Monitor.get_food() - 1);
+					this.consumed += 1;
+				}
+				else 
+				{
+					Monitor.set_food(Monitor.get_food() - this.weight);
+					this.consumed += this.weight;
+				}
+			}
 		}
-		else 
+		finally {
+            Monitor.food_lock.unlock();
+            if(is_eating()) change_state();
+	    }
+	}
+
+	//The philosopher is focused in his thoughts for the next t seconds.
+	private void focus(int t) throws InterruptedException
+	{
+		Thread.sleep(t);
+	}
+
+	//The philosopher starts to think
+	private void think()
+	{
+		try {
+			int max = Dinner.get_philosophers() * 50, min = Dinner.get_philosophers(); //5s maximum and 0.5s minimum time
+			Random rand = new Random();
+			focus(rand.nextInt((max - min) + 1) + min);
+		}
+		catch (InterruptedException e)
 		{
-			Dinner.set_food(Dinner.get_food() - this.weight);
-			this.consumed += this.weight;
+			e.printStackTrace();
 		}
 	}
 }

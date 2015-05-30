@@ -30,9 +30,9 @@ public class InputReader
 	//Input-read related methods
 
 	//Creates a new philosopher object and add it to the philosopher list
-	private void create_philosopher(int number, int weight, boolean[] forks)
+	private void create_philosopher(int number, int weight) 
 	{
-		Philosopher p = new Philosopher(number, weight, forks);
+		Philosopher p = new Philosopher(number, weight);
 		(this.philosopher).add(p);
 	}
 
@@ -61,17 +61,17 @@ public class InputReader
 					}
 					if(i == 2)
 					{
-						boolean[] forks;
+						//!!!boolean[] forks;
 						String[] weight = line.split(" ");
 						
-						/*Allocates the forks and initializes. Forks and the food are the resources in the philosophers' problem*/
-						forks = new boolean[this.philosophers];
-						for(int j = 0; j < this.philosophers; j++) forks[j] = true;
+						/*!!!Allocates the forks and initializes. Forks and the food are the resources in the philosophers' problem*/
+						//!!!forks = new boolean[this.philosophers];
+						//!!!for(int j = 0; j < this.philosophers; j++) forks[j] = true;
 						
 						for(int j = 0; j < this.philosophers; j++)
 						{
 							if(!is_integer(weight[j])) return false;
-							create_philosopher(j + 1, Integer.parseInt(weight[j]), forks);
+							create_philosopher(j + 1, Integer.parseInt(weight[j])/*!!!, forks*/);
 						}
 						break;
 					}
