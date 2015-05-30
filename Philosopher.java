@@ -46,7 +46,27 @@ public class Philosopher implements Runnable
 		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
 	}
 
-	//Setters
+	//Getters
+	/**********************************************************************/
+	public int get_number() { return this.number; }
+	public int get_weight() { return this.weight; }
+	public int get_consumed() { return this.consumed; }
+	/**********************************************************************/
+	//Other methods
+	//Changes the philosopher's state
+	private void change_state()
+	{
+		if(this.state == State.THINKING) this.state = State.EATING;
+		else this.state = State.THINKING;
+	}
+
+	//Check if philosopher is thinking
+	private boolean is_thinking() { return this.state == State.THINKING; }
+
+	//Check if philosopher is eating
+	private boolean is_eating() { return this.state == State.EATING; }
+
+	//Consumes the food from the dinner
 	public void consume() 
 	{ 
 		if(Dinner.get_mode() == 'U') 
@@ -60,21 +80,4 @@ public class Philosopher implements Runnable
 			this.consumed += this.weight;
 		}
 	}
-
-	//Getters
-	public int get_number() { return this.number; }
-	public int get_weight() { return this.weight; }
-	public int get_consumed() { return this.consumed; }
-
-	//Other methods
-	//Changes the philosopher's state
-	private void change_state()
-	{
-		if(this.state == State.THINKING) this.state = State.EATING;
-		else this.state = State.THINKING;
-	}
-	//Check if philosopher is thinking
-	private boolean is_thinking() { return this.state == State.THINKING; }
-	//Check if philosopher is eating
-	private boolean is_eating() { return this.state == State.EATING; }
 }
