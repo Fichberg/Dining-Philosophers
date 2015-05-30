@@ -67,19 +67,14 @@ public class Philosopher implements Runnable
 	public int get_consumed() { return this.consumed; }
 
 	//Other methods
+	//Changes the philosopher's state
 	private void change_state()
 	{
 		if(this.state == State.THINKING) this.state = State.EATING;
 		else this.state = State.THINKING;
 	}
-	
-	private boolean is_thinking()
-	{
-		return this.state == State.THINKING;
-	}
-
-	private boolean is_eating()
-	{
-		return this.state == State.EATING;
-	}
+	//Check if philosopher is thinking
+	private boolean is_thinking() { return this.state == State.THINKING; }
+	//Check if philosopher is eating
+	private boolean is_eating() { return this.state == State.EATING; }
 }

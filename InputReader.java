@@ -20,28 +20,12 @@ public class InputReader
 	}
 
 	//Methods
-
 	//Getters
 	/***********************************************************************************************/
-	public ArrayList<Philosopher> get_philosopher()
-	{
-		return this.philosopher;
-	}
-
-	public int get_philosophers()
-	{
-		return this.philosophers;
-	}
-
-	public int get_food()
-	{
-		return this.food;
-	}
-
-	public char get_mode()
-	{
-		return this.mode;
-	}	
+	public ArrayList<Philosopher> get_philosopher() { return this.philosopher; }
+	public int get_philosophers() { return this.philosophers; }
+	public int get_food() { return this.food; }
+	public char get_mode() { return this.mode; }	
 	/***********************************************************************************************/
 	//Input-read related methods
 
