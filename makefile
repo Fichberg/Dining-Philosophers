@@ -7,7 +7,9 @@ JC = javac
 CLASSES = \
 	Dinner.java \
 	Philosopher.java \
-	InputReader.java
+	InputReader.java \
+	State.java \
+	Monitor.java
 default: classes
 classes: $(CLASSES:.java=.class)
 clean:
