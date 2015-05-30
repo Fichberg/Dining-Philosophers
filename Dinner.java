@@ -13,8 +13,10 @@ public class Dinner
 
 	public static void main(String[] args)
 	{
+		boolean[] forks; 
 		InputReader data = new InputReader(args);
 
+		/*Initializes variables*/
 		set_philosopher(data.get_philosopher());
 		set_philosophers(data.get_philosophers());
 		set_food(data.get_food());
@@ -26,29 +28,12 @@ public class Dinner
 
 	//Setters
 	/*****************************************************/
-	public static void set_philosopher(ArrayList<Philosopher> philosopher_list)
-	{
-		philosopher = philosopher_list;
-	}
-
-	public static void set_philosophers(int total_philosophers)
-	{
-		philosophers = total_philosophers;
-	}
-
-	public static void set_food(int food_quantity)
-	{ 
-		food = food_quantity;
-	}
-
-	public static void set_mode(char selected_mode)
-	{
-		mode = selected_mode;
-	}
+	public static void set_philosopher(ArrayList<Philosopher> philosopher_list) { philosopher = philosopher_list; }
+	public static void set_philosophers(int total_philosophers) { philosophers = total_philosophers; }
+	public static void set_food(int food_quantity) { food = food_quantity; }
+	public static void set_mode(char selected_mode) { mode = selected_mode; }
 	//Getters
 	/*****************************************************/
-	public static int get_food()
-	{
-		return food;
-	}
+	public static int get_food() { return food; }
+	public static char get_mode() { return mode; }
 }
