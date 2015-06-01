@@ -9,26 +9,29 @@ public class Philosopher implements Runnable
 	private int weight;
 	private int consumed;
 	private State state;
+	private Monitor monitor;
 
-	public Philosopher(int number, int weight)
+	public Philosopher(int number, int weight, Monitor monitor)
 	{
 		this.number = number;
 		this.weight = weight;
 		this.consumed = 0;
 		this.state = State.THINKING;
+		this.monitor = monitor;
 	}
 
 	public void run()
 	{
-		while(Monitor.get_food() > 0)
+		while(Dinner.have_food())
 		{
 			think();
-			//TODO: Monitor.get_fork
+			//TODO: this.monitor.get_fork
 			eat();
-			//TODO: Monitor.put.fork
+			//TODO: this.monitor.put.fork
 		}
 
 		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
+		System.out.println("Food: " + Dinner.get_food());
 	}
 
 	//Getters
@@ -54,26 +57,35 @@ public class Philosopher implements Runnable
 	//Consumes the food from the dinner
 	private void eat() 
 	{ 
-		Monitor.food_lock.lock();
+		Dinner.food_lock.lock();
 		try 
 		{
-			if(Monitor.get_food() > 0)
+			if(Dinner.get_food() > 0)
 			{
+				System.out.println("Philosopher #" + this.number + " is eating. Nham!");
 				if(is_thinking()) change_state();
 				if(Dinner.get_mode() == 'U') 
 				{
-					Monitor.set_food(Monitor.get_food() - 1);
+					Dinner.set_food(Dinner.get_food() - 1);
 					this.consumed += 1;
 				}
 				else 
 				{
-					Monitor.set_food(Monitor.get_food() - this.weight);
-					this.consumed += this.weight;
+					if(Dinner.get_food() >= this.weight)
+					{
+						Dinner.set_food(Dinner.get_food() - this.weight);
+						this.consumed += this.weight;
+					}
+					else
+					{
+						this.consumed += Dinner.get_food();
+						Dinner.set_food(0);
+					}
 				}
 			}
 		}
 		finally {
-            Monitor.food_lock.unlock();
+            Dinner.food_lock.unlock();
             if(is_eating()) change_state();
 	    }
 	}
@@ -88,7 +100,8 @@ public class Philosopher implements Runnable
 	private void think()
 	{
 		try {
-			int max = Dinner.get_philosophers() * 50, min = Dinner.get_philosophers(); //5s maximum and 0.5s minimum time
+			System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
+			int max = Dinner.get_philosophers() * 100, min = Dinner.get_philosophers(); //4000 -> 4s
 			Random rand = new Random();
 			focus(rand.nextInt((max - min) + 1) + min);
 		}
