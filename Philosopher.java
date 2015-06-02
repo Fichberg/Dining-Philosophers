@@ -24,10 +24,15 @@ public class Philosopher implements Runnable
 	{
 		while(Dinner.have_food())
 		{
-			think();
-			//TODO: this.monitor.get_fork
-			eat();
-			//TODO: this.monitor.put.fork
+			try{
+				think();
+				monitor.get_forks(number - 1);
+				eat();
+				monitor.put_forks(number - 1);
+			}
+			catch (InterruptedException e) {
+				System.out.println(e);
+			}
 		}
 
 		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
