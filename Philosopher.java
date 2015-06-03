@@ -8,6 +8,7 @@ public class Philosopher implements Runnable
 	private int number;
 	private int weight;
 	private int consumed;
+	private int meals;
 	private State state;
 	private Monitor monitor;
 
@@ -16,6 +17,7 @@ public class Philosopher implements Runnable
 		this.number = number;
 		this.weight = weight;
 		this.consumed = 0;
+		this.meals = 0;
 		this.state = State.THINKING;
 		this.monitor = monitor;
 	}
@@ -36,7 +38,7 @@ public class Philosopher implements Runnable
 		}
 		
 		release_remaining_threads();
-		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
+		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed + " ("+meals+" meals).");
 	}
 
 	//Getters
@@ -86,6 +88,7 @@ public class Philosopher implements Runnable
 						this.consumed += Dinner.get_food();
 						Dinner.set_food(0);
 					}
+					meals++;
 				}
 			}
 		}
