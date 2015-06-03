@@ -25,18 +25,17 @@ public class Philosopher implements Runnable
 		while(Dinner.have_food())
 		{
 			try{
-				think();
-				monitor.get_forks(number - 1);
+				//think();
+				monitor.get_forks(number - 1, Dinner.get_food());
 				eat();
-				monitor.put_forks(number - 1);
+				monitor.put_forks(number - 1, Dinner.get_food());
 			}
 			catch (InterruptedException e) {
 				System.out.println(e);
 			}
 		}
-
 		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed);
-		System.out.println("Food: " + Dinner.get_food());
+		if(number == 1) System.out.println("Food remaining: " + Dinner.get_food());
 	}
 
 	//Getters
@@ -67,7 +66,7 @@ public class Philosopher implements Runnable
 		{
 			if(Dinner.get_food() > 0)
 			{
-				System.out.println("Philosopher #" + this.number + " is eating. Nham!");
+				//System.out.println("Philosopher #" + this.number + " is eating. Nham!");
 				if(is_thinking()) change_state();
 				if(Dinner.get_mode() == 'U') 
 				{
@@ -105,7 +104,7 @@ public class Philosopher implements Runnable
 	private void think()
 	{
 		try {
-			System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
+			//System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
 			int max = Dinner.get_philosophers() * 100, min = Dinner.get_philosophers(); //4000 -> 4s
 			Random rand = new Random();
 			focus(rand.nextInt((max - min) + 1) + min);
