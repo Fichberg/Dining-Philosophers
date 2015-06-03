@@ -24,44 +24,50 @@ public class Monitor
 	//Attempts to get fork i and fork (i + 1) % forks.length, where 0 <= i < forks.length
 	public void get_forks(int fork, int food) throws InterruptedException
 	{
-		if(food > 0) {
-			lock.lock();
+		lock.lock();
 
-			try {
-	       
-	        while (forks[fork] == false && forks[(fork + 1) % forks.length] == false) wait(available);
-	        forks[fork] = false;
-	        forks[(fork + 1) % forks.length] = false;
+		try {
+       
+        if(food > 0) while (forks[fork] == false && forks[(fork + 1) % forks.length] == false) wait(available);
+        forks[fork] = false;
+        forks[(fork + 1) % forks.length] = false;
 
-	        signal(unavailable);
-	        
-	        } finally {
-	            lock.unlock();
-	        }
-		}
+        signal(unavailable);
+        
+        } finally {
+            lock.unlock();
+        }
 	}
 
 	//Put down the forks
 	public void put_forks(int fork, int food) throws InterruptedException
-	{
-		if(food > 0){
-			lock.lock();
+	{	
+		lock.lock();
 
-			try {
-	       
-	        while (forks[fork] == true && forks[(fork + 1) % forks.length] == true) wait(unavailable);
-	        forks[fork] = true;
-	        forks[(fork + 1) % forks.length] = true;
+		try {
+       
+        if(food > 0) while (forks[fork] == true && forks[(fork + 1) % forks.length] == true) wait(unavailable);
+        forks[fork] = true;
+        forks[(fork + 1) % forks.length] = true;
 
-	        signal(available);
+        signal(available);
 
-	        } finally {
-	            lock.unlock();
-	        }
-    	}
+        } finally {
+            lock.unlock();
+        }	
+	}
+
+	public void release_all() throws InterruptedException
+	{ 
+		 lock.lock();
+		 for(int i = 0; i < forks.length; i++) forks[i] = true;
+		 signal_all(available); Thread.sleep(100);
+		 signal_all(unavailable);
+		 lock.unlock();
 	}
 
 	//Aliases
 	public void wait(Condition cv) throws InterruptedException { cv.await(); }
 	public void signal(Condition cv) throws InterruptedException { cv.signal(); }
+	public void signal_all(Condition cv) throws InterruptedException { cv.signalAll(); }
 }
