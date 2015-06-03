@@ -69,8 +69,9 @@ public class Philosopher implements Runnable
 		{
 			if(Dinner.get_food() > 0)
 			{
-				System.out.println("Philosopher #" + this.number + " is eating. Nham!");
 				if(is_thinking()) change_state();
+				degustate();
+
 				if(Dinner.get_mode() == 'U') 
 				{
 					Dinner.set_food(Dinner.get_food() - 1);
@@ -108,8 +109,8 @@ public class Philosopher implements Runnable
 	private void think()
 	{
 		try {
-			System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
 			int max = Dinner.get_philosophers() * 100, min = Dinner.get_philosophers(); //4000 -> 4s
+			System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
 			Random rand = new Random();
 			focus(rand.nextInt((max - min) + 1) + min);
 		}
@@ -117,6 +118,24 @@ public class Philosopher implements Runnable
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private void degustate()
+	{
+		try {
+			System.out.println("Philosopher #" + this.number + " is eating. Nham!");
+			digest();
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	
+	private void digest() throws InterruptedException
+	{
+		Thread.sleep(50); //Philosophers degustate and then digest for a fixed amount of 0.05s. They eat REALLY fast!
 	}
 
 	private void release_remaining_threads()
