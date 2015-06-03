@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Dinner
 {
+	private static Chronometer chrono;
 	final static Lock food_lock = new ReentrantLock(true);
 	private static int food;
 	private static ArrayList<Philosopher> philosopher;
@@ -21,6 +22,9 @@ public class Dinner
 		set_mode(data.get_mode());
 		set_food(data.get_food());
 
+		//Created the Chronometer
+		chrono = new Chronometer();
+
 		//Create threads
 		for (Philosopher p : philosopher) (new Thread(p)).start();
 	}
@@ -36,6 +40,7 @@ public class Dinner
 	public static char get_mode() { return mode; }
 	public static int get_food() { return food; }
 	public static int get_philosophers() { return philosophers; }
+	public static Chronometer get_chronometer() { return chrono; };
 	/*****************************************************/
 	public static boolean have_food() { return food > 0; }
 }

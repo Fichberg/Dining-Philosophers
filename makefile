@@ -9,7 +9,8 @@ CLASSES = \
 	Philosopher.java \
 	InputReader.java \
 	State.java \
-	Monitor.java
+	Monitor.java \
+	Chronometer.java
 default: classes
 classes: $(CLASSES:.java=.class)
 clean:

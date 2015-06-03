@@ -110,7 +110,7 @@ public class Philosopher implements Runnable
 	{
 		try {
 			int max = Dinner.get_philosophers() * 100, min = Dinner.get_philosophers(); //4000 -> 4s
-			System.out.println("Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
+			System.out.println(Dinner.get_chronometer().get_time() + "Philosopher #" + this.number + " is thinking. Hmmmm... So focused...");
 			Random rand = new Random();
 			focus(rand.nextInt((max - min) + 1) + min);
 		}
@@ -123,7 +123,7 @@ public class Philosopher implements Runnable
 	private void degustate()
 	{
 		try {
-			System.out.println("Philosopher #" + this.number + " is eating. Nham!");
+			System.out.println(Dinner.get_chronometer().get_time() + "Philosopher #" + this.number + " is eating. Nham!");
 			digest();
 		}
 		catch (InterruptedException e)
