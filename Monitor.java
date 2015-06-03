@@ -10,7 +10,6 @@ public class Monitor
 
 	private final Lock lock;
 	private final Condition available;
-	private final Condition unavailable;
 
 	Monitor(boolean[] forks)
 	{
@@ -18,7 +17,6 @@ public class Monitor
 		
 		lock = new ReentrantLock(true);
 		available = lock.newCondition();
-		unavailable = lock.newCondition();
 	}
 
 	//Attempts to get fork i and fork (i + 1) % forks.length, where 0 <= i < forks.length
@@ -28,12 +26,10 @@ public class Monitor
 
 		try {
        
-        if(food > 0) while (forks[fork] == false && forks[(fork + 1) % forks.length] == false) wait(available);
+        if(food > 0) while (forks[fork] == false || forks[(fork + 1) % forks.length] == false) wait(available);
         forks[fork] = false;
         forks[(fork + 1) % forks.length] = false;
 
-        signal(unavailable);
-        
         } finally {
             lock.unlock();
         }
@@ -45,8 +41,7 @@ public class Monitor
 		lock.lock();
 
 		try {
-       
-        if(food > 0) while (forks[fork] == true && forks[(fork + 1) % forks.length] == true) wait(unavailable);
+
         forks[fork] = true;
         forks[(fork + 1) % forks.length] = true;
 
@@ -62,7 +57,6 @@ public class Monitor
 		 lock.lock();
 		 for(int i = 0; i < forks.length; i++) forks[i] = true;
 		 signal_all(available); Thread.sleep(100);
-		 signal_all(unavailable);
 		 lock.unlock();
 	}
 

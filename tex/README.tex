@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+
+%% Escrevendo em português
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[a4paper,margin={1in}]{geometry}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{courier}
+\usepackage{pifont}
+\usepackage{pgfplots}
+\definecolor{sblue}{rgb}{0, 0, 1}
+\definecolor{blue}{rgb}{0, 0.55, 1}
+\definecolor{red}{rgb}{1, 0, 0}
+\newcommand{\quotes}[1]{``#1''}
+
+%% Pulando linhas
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand{\vsp}{\vspace{0.2in}}
+
+
+
+
+\begin{document}
+
+
+\centerline{
+  \begin{minipage}[t]{5in}
+    \begin{center}
+    {\Large \bf README - EP3}
+    \vsp \\
+	{\small {\bf Disciplina:} Programação Concorrente - MAC0438 / IME-USP}\\
+	{\small {\bf Professor:} Daniel Macêdo Batista}
+    \end{center}
+  \end{minipage}
+}
+\vsp
+
+
+\section{Integrantes}
+
+\begin{tabular}{ll}
+\textbf {Nome} &  \textbf {NUSP} \\
+Renan Fichberg & 7991131
+\end{tabular}
+
+\vsp
+
+%============================================================
+
+\section{Arquivos e diretórios}
+
+O diretório \textbf{ep3-renan} deve conter os seguintes arquivos e diretórios:
+\subsection{Arquivos}
+\begin{itemize}
+\item \textbf{Dinner.java} -- Classe que representa o jantar dos filósofos. Contém a função \textit{main}.
+\item \textbf{InputReader.java} -- Classe para fazer a coleta dos dados de entradas e criar algumas entidades, como os filósofos e o monitor.
+\item \textbf{Philosopher.java} -- Classe que representa um filósofo. Cada filósofo é uma \textit{thread}.
+\item \textbf{Monitor.java} -- Classe que implementa um monitor para garantir exclusão mútua.
+\item \textbf{State.java} -- Enum com os possíveis 2 estados dos filósofos.
+\item \textbf{Chronometer.java} -- Classe para cronometrar o tempo decorrido no jantar dos filósofos.
+\item \textbf{makefile} -- Para compilar o programa.
+\item \textbf{Relatorio.pdf} -- Documento que contém resultados experimentais e observações.
+\item \textbf{README.pdf} -- Este documento, que contém uma explicação geral do programa.
+\end{itemize}
+
+\subsection{Diretórios}
+\begin{itemize}
+	\item \textbf{inputs} -- Diretório que deverá conter, \textbf{obrigatoriamente}, os arquivos de entrada. Estão sendo enviados 4 arquivos de exemplos de entrada (simple\_u.txt, simple\_p.txt, complex\_u.txt e complex\_p.txt). 
+\end{itemize}
+
+
+
+\section{Compilação e execução}
+Para compilar, você pode utilizar o programa \textit{make} sem nenhum parâmetro:
+
+\begin{flushleft}
+\textcolor{blue}{\$make}
+\end{flushleft}
+
+\noindent Para executar o programa gerado na compilação, \textbf{você deve passar obrigatoriamente os seguintes 3 parâmetros nessa ordem}.
+
+\begin{flushleft}
+\textcolor{blue}{\$ java Dinner $<$arquivo\_de\_entrada.txt$>$ R [U $|$ P]}
+
+onde, 
+\end{flushleft}
+\begin{itemize}
+\item \textbf{arquivo\_de\_entrada.txt} -- Um arquivo com \textbf{obrigatoriamente} extensão .txt no seguinte formato:
+\begin{itemize}
+	\item Linha 1: A quantidade $N$ de filósofos.
+	\item Linha 2: Os $p_i$ pesos dos $N$ filosófos, $1 \leq i \leq N$, no formato $p_1$ $p_2$ $p_3$ ... $p_N$ 
+\end{itemize} 
+\item \textbf{R} -- A quantidade de porções de comida que os filósofos comerão. O jantar (programa) encerra quando este valor atingir zero.
+\item \textbf{[U $|$ P]} -- Modo de operação. Há 2 possíveis modos:
+\begin{enumerate}
+	\item Modo \textbf{U} -- Cada filosófo $i$ comerá uma unidade de porção de comida, independente do seu peso, \textit{quando conseguir adquirir 2 garfos}.
+	\item Modo \textbf{P} -- Cada filosófo $i$ comerá $p_i$ unidade(s) de porção de comida \textit{quando conseguir adquirir 2 garfos}.
+\end{enumerate}
+\end{itemize}
+
+
+\section{Sobre o programa}
+
+O programa foi escrito em linguagem Java pela facilidade para implementar o monitor e manipular as \textit{threads}.
+
+\pagebreak
+
+\subsection{Monitor}
+
+A seguir, é apresentada a estrutura do monitor implementada no programa.
+
+\begin{verbatim}
+class Monitor{
+	    Recursos que devem ser protegidos;
+	    Trava;
+	    Varáveis de Condição;
+
+	    Construtor();
+
+	    Métodos();
+
+	    Aliases();
+}
+\end{verbatim}
+
+Todos os métodos do monitor são funções públicas, e as suas funções privadas são, na verdade, apenas \textit{aliases} para seguir as especificações do enunciado. O monitor foi implementado de forma a garantir exclusão mútua para cada par de filosófos que concorrerem a um garfo (\textit{que é um recurso}). Todos os métodos do monitor, quando invocados, tentam se apoderar da trava, que só é liberada quando o filósofo (que é uma \textit{thread}) que a obteve terminou de fazer o que precisava. Ainda, internamente, os métodos usam \textit{wait} e \textit{signal} para solucionar os problemas com a trava.
+
+Ao entrar na sala de jantar, um filósofo sabe qual é o seu lugar. A primeira coisa que ele vê é se os seus 2 garfos estão disponíveis. Se estiver, ele vai até a mesa de jantar, usa o par de garfos e faz sua refeição, caso contrário, ele espera até os seus garfos estarem disponíveis. Nota que, para 5 filósofos, por exemplo, essa implementação só permite 2 filosófos não vizinhos na mesa simultaneamente, já que não há como um filósofo segurar um garfo e esperar pelo outro.
+
+\pagebreak
+\section{Guia de implementação}
+
+Nesta seção, iremos brevemente falar sobre as classes e os seus métodos.
+
+
+\subsection{Classe: Dinner}
+Nesta seção, um breve apresentação das assinaturas dos métodos (sem os parâmetros) e para que servem.
+\begin{itemize}
+	\item \textbf{\textcolor{sblue}{void} args\_qt} -- Checagem da quantidade de argumentos passados pela linha de comando.
+	\item \textbf{\textcolor{sblue}{void} integer\_argument} -- Checagem dos argumentos que devem ser inteiros para garantir que não irá quebrar na chamada dos sucessivos \textit{atoi}.
+	\item \textbf{\textcolor{sblue}{int} do\_first\_argument} -- Obtem o primeiro parâmetro.
+	\item \textbf{\textcolor{sblue}{int} do\_second\_argument} -- Obtem o segundo parâmetro.
+	\item \textbf{\textcolor{sblue}{int} do\_third\_argument} -- Obtem o terceiro parâmetro.
+	\item \textbf{\textcolor{sblue}{char} *do\_fifth\_argument} - Ontem o quinto parâmetro.
+	\item \textbf{\textcolor{sblue}{void} initiate\_terms} -- Inicia os campos dos termos.
+	\item \textbf{\textcolor{sblue}{void} free\_terms} -- Desaloca toda memória alocada dinamicamente na inicialização dos campos dos termos.
+	\item \textbf{\textcolor{sblue}{void} create\_threads} -- Cria as \textit{threads}.
+	\item \textbf{\textcolor{sblue}{void} join\_threads} -- Faz a chamada para dar \textit{join} em todas as \textit{threads} internamente.
+	\item \textbf{\textcolor{sblue}{void} get\_x} -- Pega o valor obtido de \textit{x} e o transforma em um número que usa um tipo de alta precisão.
+	\item \textbf{\textcolor{sblue}{void} get\_precision} -- Pega o valor obtido da precisão e o transforma em um número que usa um tipo de alta precisão.
+	\item \textbf{\textcolor{sblue}{void} initiate\_cosx} -- Inicia o \textit{cos(x)} com um tipo de alta precisão.
+	\item \textbf{\textcolor{sblue}{void} initiate\_arrays} -- Inicia os vetores que serão usados nos cálculos de potências e fatoriais.
+	\item \textbf{\textcolor{sblue}{void} free\_arrays} -- Desaloca os vetores que foram usados nos cálculos de potências e fatoriais.
+	\item \textbf{\textcolor{sblue}{void} initiate\_locks} -- Inicia as travas do programa.
+	\item \textbf{\textcolor{sblue}{void} destroy\_locks} -- Encerra as travas do programa.
+	\item \textbf{\textcolor{sblue}{void} sequential\_compute} -- Calcula \textit{cos(x)} em modo sequencial, caso o programa seja solicitado a rodar no modo \textbf{\textcolor{blue}{s}} ou o valor do primeiro parâmetro seja 1.
+	\item \textbf{\textcolor{sblue}{void} *term\_compute} -- Calcula \textit{cos(x)} em modo paralelo, caso o programa não seja solicitado a rodar no modo \textbf{\textcolor{blue}{s}} e o valor do primeiro parâmetro não seja 1.
+	\item \textbf{\textcolor{sblue}{void} barrier} -- A função da barreira para garantir a sincronização das \textit{threads}. As computações do cosseno em modo paralelo acontecem dentro deste método.
+	\item \textbf{\textcolor{sblue}{void} do\_factorial2n} -- Chama internamente o método que calcula o fatorial do termo.
+	\item \textbf{\textcolor{sblue}{mpz\_t} *mpz\_fact2n} -- Função que calcula os fatoriais e retorna o fatorial desejado.
+	\item \textbf{\textcolor{sblue}{void} do\_power2n} -- Chama internamente o método que calcula a potência do termo.
+	\item \textbf{\textcolor{sblue}{mpf\_t} *mpf\_pow2n} -- Função que calcula as potências e retorna a potência desejada.
+	\item \textbf{\textcolor{sblue}{void} do\_sign} -- De acordo com o sinal do termo, soma ou subtrai de \textit{cos(x)}.
+	\item \textbf{\textcolor{sblue}{void} do\_absolute} -- Usada para fazer o módulo da diferença de dois cossenos calculados em rodadas consecutivas de um número com tipo de alta precisão internamente.
+	\item \textbf{\textcolor{sblue}{void} assign\_and\_update} -- Atribui o valor das globais que precisam às \textit{threads} e reescreve seus valores (das globais) de forma segura para a próxima \textit{thread} usar.
+	\item \textbf{\textcolor{sblue}{void} reset\_computation\_control\_globals} -- O último termo a ser computado da rodada reinicia algumas das variáveis globais.
+	\item \textbf{\textcolor{sblue}{void} print\_thread\_id} -- Internamente, chama um \textit{printf} caso o programa esteja rodando com o parâmetro opcional \textbf{\textcolor{blue}{d}} para imprimir o identificador da \textit{thread}.
+	\item \textbf{\textcolor{sblue}{void} print\_cosx} -- Imprime o valor de \textit{cos(x)} sempre que invocada. 
+\end{itemize}
+
+\end{document}

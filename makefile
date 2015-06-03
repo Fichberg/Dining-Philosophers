@@ -15,4 +15,5 @@ default: classes
 classes: $(CLASSES:.java=.class)
 clean:
 	$(RM) *.class
-	$(RM) logs/*.log
+	$(RM) *.log
+	$(RM) *.aux
