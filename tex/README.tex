@@ -1,9 +1,7 @@
 \documentclass[11pt]{article}
 
-%% Escrevendo em português
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
-%\usepackage[latin1]{inputenc}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage[a4paper,margin={1in}]{geometry}
 \usepackage{graphicx}
@@ -16,7 +14,6 @@
 \definecolor{red}{rgb}{1, 0, 0}
 \newcommand{\quotes}[1]{``#1''}
 
-%% Pulando linhas
 \renewcommand{\baselinestretch}{1.5}
 
 \newcommand{\vsp}{\vspace{0.2in}}
@@ -48,8 +45,6 @@ Renan Fichberg & 7991131
 \end{tabular}
 
 \vsp
-
-%============================================================
 
 \section{Arquivos e diretórios}
 
@@ -134,42 +129,66 @@ Ao entrar na sala de jantar, um filósofo sabe qual é o seu lugar. A primeira c
 \pagebreak
 \section{Guia de implementação}
 
-Nesta seção, iremos brevemente falar sobre as classes e os seus métodos.
-
+Nesta seção, iremos brevemente falar sobre as classes e os seus métodos. \textbf{\textit{Setters} e \textit{Getters} não estão escritos neste documento}.
 
 \subsection{Classe: Dinner}
-Nesta seção, um breve apresentação das assinaturas dos métodos (sem os parâmetros) e para que servem.
+A classe que representa o jantar dos filósofos e o ponto de partida do programa. Quando a quantidade de comida \textit{food} desta classe atingir zero, o programa encerra. 
 \begin{itemize}
-	\item \textbf{\textcolor{sblue}{void} args\_qt} -- Checagem da quantidade de argumentos passados pela linha de comando.
-	\item \textbf{\textcolor{sblue}{void} integer\_argument} -- Checagem dos argumentos que devem ser inteiros para garantir que não irá quebrar na chamada dos sucessivos \textit{atoi}.
-	\item \textbf{\textcolor{sblue}{int} do\_first\_argument} -- Obtem o primeiro parâmetro.
-	\item \textbf{\textcolor{sblue}{int} do\_second\_argument} -- Obtem o segundo parâmetro.
-	\item \textbf{\textcolor{sblue}{int} do\_third\_argument} -- Obtem o terceiro parâmetro.
-	\item \textbf{\textcolor{sblue}{char} *do\_fifth\_argument} - Ontem o quinto parâmetro.
-	\item \textbf{\textcolor{sblue}{void} initiate\_terms} -- Inicia os campos dos termos.
-	\item \textbf{\textcolor{sblue}{void} free\_terms} -- Desaloca toda memória alocada dinamicamente na inicialização dos campos dos termos.
-	\item \textbf{\textcolor{sblue}{void} create\_threads} -- Cria as \textit{threads}.
-	\item \textbf{\textcolor{sblue}{void} join\_threads} -- Faz a chamada para dar \textit{join} em todas as \textit{threads} internamente.
-	\item \textbf{\textcolor{sblue}{void} get\_x} -- Pega o valor obtido de \textit{x} e o transforma em um número que usa um tipo de alta precisão.
-	\item \textbf{\textcolor{sblue}{void} get\_precision} -- Pega o valor obtido da precisão e o transforma em um número que usa um tipo de alta precisão.
-	\item \textbf{\textcolor{sblue}{void} initiate\_cosx} -- Inicia o \textit{cos(x)} com um tipo de alta precisão.
-	\item \textbf{\textcolor{sblue}{void} initiate\_arrays} -- Inicia os vetores que serão usados nos cálculos de potências e fatoriais.
-	\item \textbf{\textcolor{sblue}{void} free\_arrays} -- Desaloca os vetores que foram usados nos cálculos de potências e fatoriais.
-	\item \textbf{\textcolor{sblue}{void} initiate\_locks} -- Inicia as travas do programa.
-	\item \textbf{\textcolor{sblue}{void} destroy\_locks} -- Encerra as travas do programa.
-	\item \textbf{\textcolor{sblue}{void} sequential\_compute} -- Calcula \textit{cos(x)} em modo sequencial, caso o programa seja solicitado a rodar no modo \textbf{\textcolor{blue}{s}} ou o valor do primeiro parâmetro seja 1.
-	\item \textbf{\textcolor{sblue}{void} *term\_compute} -- Calcula \textit{cos(x)} em modo paralelo, caso o programa não seja solicitado a rodar no modo \textbf{\textcolor{blue}{s}} e o valor do primeiro parâmetro não seja 1.
-	\item \textbf{\textcolor{sblue}{void} barrier} -- A função da barreira para garantir a sincronização das \textit{threads}. As computações do cosseno em modo paralelo acontecem dentro deste método.
-	\item \textbf{\textcolor{sblue}{void} do\_factorial2n} -- Chama internamente o método que calcula o fatorial do termo.
-	\item \textbf{\textcolor{sblue}{mpz\_t} *mpz\_fact2n} -- Função que calcula os fatoriais e retorna o fatorial desejado.
-	\item \textbf{\textcolor{sblue}{void} do\_power2n} -- Chama internamente o método que calcula a potência do termo.
-	\item \textbf{\textcolor{sblue}{mpf\_t} *mpf\_pow2n} -- Função que calcula as potências e retorna a potência desejada.
-	\item \textbf{\textcolor{sblue}{void} do\_sign} -- De acordo com o sinal do termo, soma ou subtrai de \textit{cos(x)}.
-	\item \textbf{\textcolor{sblue}{void} do\_absolute} -- Usada para fazer o módulo da diferença de dois cossenos calculados em rodadas consecutivas de um número com tipo de alta precisão internamente.
-	\item \textbf{\textcolor{sblue}{void} assign\_and\_update} -- Atribui o valor das globais que precisam às \textit{threads} e reescreve seus valores (das globais) de forma segura para a próxima \textit{thread} usar.
-	\item \textbf{\textcolor{sblue}{void} reset\_computation\_control\_globals} -- O último termo a ser computado da rodada reinicia algumas das variáveis globais.
-	\item \textbf{\textcolor{sblue}{void} print\_thread\_id} -- Internamente, chama um \textit{printf} caso o programa esteja rodando com o parâmetro opcional \textbf{\textcolor{blue}{d}} para imprimir o identificador da \textit{thread}.
-	\item \textbf{\textcolor{sblue}{void} print\_cosx} -- Imprime o valor de \textit{cos(x)} sempre que invocada. 
+	\item \textbf{\textcolor{sblue}{void} main} -- Função \textit{main}.
+	\item \textbf{\textcolor{sblue}{boolean} have\_food} -- Verifica se a comida do jantar ainda não terminou.
 \end{itemize}
+
+\subsection{Classe: InputReader}
+Classe responsável por coletar todas as informações da entrada e fazer checagens para ver se o programa está sendo alimentado corretamente. 
+\begin{itemize}
+	\item \textbf{\textcolor{sblue}{void} create\_philosopher} -- Função que cria um objeto filósofo e o adiciona a uma lista de filósofos.
+	\item \textbf{\textcolor{sblue}{boolean} correct\_number\_of\_arguments} -- Verifica se o número de argumentos do programa é válido.
+	\item \textbf{\textcolor{sblue}{boolean} good\_file} -- Verifica se o arquivo de entrada está no formato correto e coleta seus dados.
+	\item \textbf{\textcolor{sblue}{boolean} good\_mode\_value} -- Verifica se o valor do modo é válido e, em caso afirmativo, o obtém.
+	\item \textbf{\textcolor{sblue}{boolean} good\_food\_value} -- Verifica se o valor da comida é válido e, em caso afirmativo, o obtém.
+	\item \textbf{\textcolor{sblue}{boolean} is\_integer} -- Verifica se algum valor é inteiro.
+	\item \textbf{\textcolor{sblue}{boolean} good\_extension} -- Verifica se o arquivo de entrada tem a extensão correta, que é .txt.
+	\item \textbf{\textcolor{sblue}{void} use} -- Imprime modo de usar.
+	\item \textbf{\textcolor{sblue}{void} bad\_file} -- Imprime problemas que podem ter ocorrido com relação ao \textcolor{blue}{arquivo\_de\_entrada}.
+	\item \textbf{\textcolor{sblue}{void} bad\_food\_value} -- Imprime problemas que podem ter ocorrido com relação ao valor \textcolor{blue}{R} da entrada.
+	\item \textbf{\textcolor{sblue}{void} bad\_mode\_value} -- Imprime problemas que podem ter ocorrido com relação ao valor \textcolor{blue}{[U $|$ P]} da entrada.
+\end{itemize}
+
+\subsection{Classe: Philosopher}
+A classe que representa os filósofos. 
+\begin{itemize}
+	\item \textbf{\textcolor{sblue}{void} run} -- Para rodar a \textit{thread}.
+	\item \textbf{\textcolor{sblue}{void} change\_state} -- Muda o estado do filósofo.
+	\item \textbf{\textcolor{sblue}{boolean} is\_thinking} -- Verifica se o filósofo está pensando.
+	\item \textbf{\textcolor{sblue}{boolean} is\_eating} -- Verifica se o filósofo está comendo.
+	\item \textbf{\textcolor{sblue}{void} eat} -- O filósofo se prepara para comer uma quantidade (dependente se o modo for \textcolor{blue}{[U $|$ P]}) de porção de comida do jantar.
+	\item \textbf{\textcolor{sblue}{void} degustate} -- O filósofo está degustando a comida.
+	\item \textbf{\textcolor{sblue}{void} digest} -- O filósofo está fazendo a digestão. Neste instante a \textit{thread} dorme por um tempo \textbf{fixo}.
+	\item \textbf{\textcolor{sblue}{void} think} -- O filósofo muda seu estado para pensando e começa a se concentrar.
+	\item \textbf{\textcolor{sblue}{void} focus} -- O filósofo se concentra nos seus pensamentos. Neste instante a \textit{thread} dorme por um tempo \textbf{arbitrário}.
+	\item \textbf{\textcolor{sblue}{void} release\_remaining\_threads} -- Caso alguma \textit{thread} ficou esperando um sinal, por segurança, sinaliza para estas que os garfos estão disponíveis.
+\end{itemize}
+
+\subsection{Enum: State}
+Contém os 2 possíveis estados de um filósofo.
+
+\subsection{Classe: Chronometer}
+A classe usada para contar o tempo decorido no jantar. 
+\begin{itemize}
+	\item \textbf{\textcolor{sblue}{String} get\_time} -- Retorna uma string no formato AhBmCs para ser impressa. A, B e C são números inteiros e h, m e s representam hora, minuto e segundo, respectivamente.
+	\item \textbf{\textcolor{sblue}{long} define\_time} -- Define os segundos decorridos de determinado minuto.
+\end{itemize}
+
+\subsection{Classe: Monitor}
+A classe que implementa o monitor. 
+\begin{itemize}
+	\item \textbf{\textcolor{sblue}{void} get\_forks} -- O filósofo tenta pegar o seu par de garfos.
+	\item \textbf{\textcolor{sblue}{void} put\_forks} -- O filósofo devolve o par de garfos que pegou.
+	\item \textbf{\textcolor{sblue}{void} release\_all} -- Para liberar quaisquer \textit{threads} que estejam aguardando um sinal que não chegou.
+	\item \textbf{\textcolor{sblue}{void} wait} -- \textit{Alias}.
+	\item \textbf{\textcolor{sblue}{void} signal} -- \textit{Alias}.
+	\item \textbf{\textcolor{sblue}{void} signal\_all} -- \textit{Alias}.
+\end{itemize}
+
 
 \end{document}
