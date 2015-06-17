@@ -38,7 +38,8 @@ public class Philosopher implements Runnable
 		}
 		
 		release_remaining_threads();
-		System.out.println("Philosopher" + this.number+" consumed "+ this.consumed + " ("+meals+" meals).");
+		if(Dinner.get_mode() == 'U') System.out.println("Philosopher" + this.number+" consumed "+ this.consumed + " ("+meals+" meals).");
+		else /*mode == P*/ System.out.println("Philosopher" + this.number+" (weight: "+ this.weight +") consumed "+ this.consumed + " ("+meals+" meals).");
 	}
 
 	//Getters
@@ -89,8 +90,8 @@ public class Philosopher implements Runnable
 						this.consumed += Dinner.get_food();
 						Dinner.set_food(0);
 					}
-					meals++;
 				}
+				meals++;
 			}
 		}
 		finally {

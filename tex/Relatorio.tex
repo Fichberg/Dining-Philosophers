@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[a4paper,margin={1in}]{geometry}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{pifont}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{pgfplots}
+\definecolor{sblue}{rgb}{0, 0, 1}
+\definecolor{blue}{rgb}{0, 0.55, 1}
+\definecolor{red}{rgb}{1, 0, 0}
+\newcommand{\quotes}[1]{``#1''}
+
+\begin{document}
+
+\section{Sobre este documento}
+\indent\indent Neste relatório, o leitor encontrará informações e resultados acerca dos testes realizados com o programa desenvolvido para resolver o problema dos \textit{filósofos famintos}.
+
+\section{Configuração da máquina}
+Processor: Intel\textregistered Core\texttrademark i5-3450 CPU @ 3.10GHz $\times$ 4 \\
+HD Seagate 7200RPM 1TB \\
+OS: Ubuntu 12.04 LTS\\
+OS type: 32-bit
+
+\section{Testes: informações}
+
+O programa foi testado para os seguintes valores de entrada:
+\begin{itemize}
+	\item \textbf{Entrada 1: Arquivo de entrada \textcolor{blue}{simple.txt}}:
+	\begin{itemize}
+		\item \textbf{Quantidade de filósofos}: 5
+		\item \textbf{Pesos}: 10 1 6 5 1
+		\item \textbf{Quantidade de comida \textcolor{blue}{$R_s$}}: 1000
+	\end{itemize}
+	\item \textbf{Entrada 2: Arquivo de entrada \textcolor{blue}{complex.txt}}:
+	\begin{itemize}
+		\item \textbf{Quantidade de filósofos}: 30
+		\item \textbf{Pesos}: 5 3 4 3 4 6 4 7 2 4 3 3 7 1 4 2 3 2 10 4 5 6 3 5 5 7 9 2 5 4
+		\item \textbf{Quantidade de comida \textcolor{blue}{$R_c$}}: 10000
+	\end{itemize}
+\end{itemize}
+
+\noindent \textbf{Obs}: pesos ordenados em ordem crescente com relação aos identificadores dos filósofos. \\
+\noindent \textbf{Para cada entrada}, o programa foi rodado \textbf{8 vezes}. No final, sera apresentado um gráfico com a média de porções consumidas por filósofo em todas as execuções.\\
+
+\section{Testes: resultados}
+
+As tabelas 1 e 2 são referentes às 8 execuções do arquivo \textbf{\textcolor{blue}{simple.txt}}. Já as tabelas 3 e 4, são referentes às 8 execuções do arquivo \textbf{\textcolor{blue}{complex.txt}}. Nas tabelas a seguir, \textbf{$C_i$} representa a quantidade de comida consumida na \textit{i-ésima} execução.
+
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
+		\hline
+		\multicolumn{9}{|c|}{\textbf{Tabela 1}} \\ \hline
+		\multicolumn{9}{|c|}{\textbf{Arquivo \textcolor{blue}{simple.txt}} \& \textbf{\textcolor{blue}{$R_s$}} = 1000 \& \textbf{modo} = \textbf{\textcolor{blue}{U}}} \\
+		\hline
+			\textbf{\# Filósofo} & \textbf{$C_1$} & \textbf{$C_2$} & \textbf{$C_3$} & \textbf{$C_4$} & \textbf{$C_5$} & \textbf{$C_6$} & \textbf{$C_7$} & \textbf{$C_8$} \\ \hline
+			1 & 190 & 192 & 203 & 201 & 196 & 202 & 202 & 204 \\ \hline
+			2 & 199 & 200 & 200 & 203 & 202 & 199 & 197 & 204 \\ \hline
+			3 & 203 & 210 & 193 & 200 & 198 & 201 & 198 & 202 \\ \hline
+			4 & 204 & 204 & 190 & 204 & 205 & 196 & 199 & 203 \\ \hline
+			5 & 204 & 194 & 214 & 192 & 199 & 202 & 204 & 187 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
+		\hline
+		\multicolumn{9}{|c|}{\textbf{Tabela 2}} \\ \hline
+		\multicolumn{9}{|c|}{\textbf{Arquivo \textcolor{blue}{simple.txt}} \& \textbf{\textcolor{blue}{$R_s$}} = 1000 \& \textbf{modo} = \textbf{\textcolor{blue}{P}}} \\
+		\hline
+			\textbf{\# Filósofo} & \textbf{$C_1$} & \textbf{$C_2$} & \textbf{$C_3$} & \textbf{$C_4$} & \textbf{$C_5$} & \textbf{$C_6$} & \textbf{$C_7$} & \textbf{$C_8$} \\ \hline
+			1 & 400 & 430 & 470 & 436 & 423 & 460 & 455 & 475 \\ \hline
+			2 & 49  & 44  & 44  & 51  & 47  & 41  & 39  & 38  \\ \hline
+			3 & 264 & 258 & 250 & 252 & 276 & 258 & 234 & 252 \\ \hline
+			4 & 239 & 225 & 195 & 215 & 215 & 199 & 225 & 195 \\ \hline
+			5 & 48  & 43  & 41  & 46  & 39  & 42  & 47  & 40  \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
+		\hline
+		\multicolumn{9}{|c|}{\textbf{Tabela 3}} \\ \hline
+		\multicolumn{9}{|c|}{\textbf{Arquivo \textcolor{blue}{complex.txt}} \& \textbf{\textcolor{blue}{$R_c$}} = 10000 \& \textbf{modo} = \textbf{\textcolor{blue}{U}}} \\
+		\hline
+			\textbf{\# Filósofo} & \textbf{$C_1$} & \textbf{$C_2$} & \textbf{$C_3$} & \textbf{$C_4$} & \textbf{$C_5$} & \textbf{$C_6$} & \textbf{$C_7$} & \textbf{$C_8$} \\ \hline
+			1  & 326 & 337 & 324 & 332 & 331 & 346 & 346 & 339 \\ \hline
+			2  & 339 & 338 & 326 & 336 & 327 & 338 & 327 & 343 \\ \hline
+			3  & 341 & 329 & 339 & 341 & 345 & 329 & 329 & 335 \\ \hline
+			4  & 341 & 336 & 344 & 335 & 332 & 320 & 337 & 332 \\ \hline
+			5  & 341 & 340 & 329 & 344 & 330 & 335 & 328 & 333 \\ \hline
+			6  & 326 & 332 & 332 & 344 & 335 & 339 & 332 & 335 \\ \hline
+			7  & 317 & 339 & 326 & 337 & 336 & 323 & 331 & 336 \\ \hline
+			8  & 329 & 339 & 334 & 344 & 318 & 324 & 362 & 324 \\ \hline
+			9  & 327 & 332 & 336 & 337 & 324 & 350 & 344 & 330 \\ \hline
+			10 & 335 & 326 & 347 & 323 & 342 & 322 & 324 & 343 \\ \hline
+			11 & 327 & 332 & 339 & 337 & 339 & 347 & 330 & 313 \\ \hline
+			12 & 352 & 354 & 334 & 343 & 325 & 346 & 316 & 332 \\ \hline
+			13 & 329 & 317 & 340 & 324 & 341 & 321 & 338 & 335 \\ \hline
+			14 & 348 & 337 & 315 & 313 & 343 & 336 & 311 & 327 \\ \hline
+			15 & 329 & 337 & 314 & 319 & 319 & 336 & 339 & 333 \\ \hline
+			16 & 338 & 333 & 323 & 322 & 339 & 328 & 317 & 320 \\ \hline
+			17 & 341 & 325 & 340 & 338 & 322 & 322 & 348 & 358 \\ \hline
+			18 & 338 & 339 & 325 & 324 & 312 & 347 & 331 & 338 \\ \hline
+			19 & 338 & 327 & 348 & 338 & 336 & 335 & 344 & 347 \\ \hline
+			20 & 328 & 316 & 307 & 327 & 352 & 328 & 331 & 326 \\ \hline
+			21 & 323 & 338 & 348 & 334 & 336 & 341 & 344 & 327 \\ \hline
+			22 & 333 & 331 & 349 & 322 & 333 & 337 & 343 & 337 \\ \hline
+			23 & 321 & 325 & 355 & 325 & 339 & 339 & 334 & 334 \\ \hline
+			24 & 323 & 338 & 334 & 355 & 340 & 322 & 333 & 342 \\ \hline
+			25 & 340 & 339 & 326 & 353 & 317 & 349 & 331 & 340 \\ \hline
+			26 & 322 & 326 & 331 & 339 & 337 & 331 & 338 & 326 \\ \hline
+			27 & 329 & 339 & 328 & 328 & 332 & 317 & 343 & 329 \\ \hline
+			28 & 336 & 331 & 331 & 325 & 341 & 322 & 322 & 332 \\ \hline
+			29 & 347 & 324 & 337 & 330 & 343 & 334 & 320 & 326 \\ \hline
+			30 & 336 & 344 & 339 & 331 & 334 & 336 & 327 & 328 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
+		\hline
+		\multicolumn{9}{|c|}{\textbf{Tabela 4}} \\ \hline
+		\multicolumn{9}{|c|}{\textbf{Arquivo \textcolor{blue}{complex.txt}} \& \textbf{\textcolor{blue}{$R_c$}} = 10000 \& \textbf{modo} = \textbf{\textcolor{blue}{P}}} \\
+		\hline
+			\textbf{\# Filósofo} & \textbf{$C_1$} & \textbf{$C_2$} & \textbf{$C_3$} & \textbf{$C_4$} & \textbf{$C_5$} & \textbf{$C_6$} & \textbf{$C_7$} & \textbf{$C_8$} \\ \hline
+			1  & 360 & 380 & 375 & 395 & 380 & 375 & 350 & 370 \\ \hline
+			2  & 261 & 228 & 213 & 225 & 234 & 213 & 246 & 222 \\ \hline
+			3  & 296 & 292 & 336 & 312 & 300 & 292 & 328 & 268 \\ \hline
+			4  & 246 & 216 & 222 & 216 & 222 & 219 & 231 & 243 \\ \hline
+			5  & 304 & 316 & 304 & 328 & 268 & 320 & 320 & 288 \\ \hline
+			6  & 456 & 432 & 474 & 468 & 468 & 414 & 390 & 498 \\ \hline
+			7  & 300 & 324 & 336 & 328 & 280 & 296 & 316 & 312 \\ \hline
+			8  & 574 & 574 & 532 & 532 & 525 & 511 & 567 & 525 \\ \hline
+			9  & 152 & 142 & 136 & 146 & 150 & 144 & 144 & 140 \\ \hline
+			10 & 288 & 296 & 336 & 312 & 328 & 312 & 332 & 304 \\ \hline
+			11 & 252 & 203 & 228 & 225 & 237 & 234 & 216 & 243 \\ \hline
+			12 & 231 & 228 & 237 & 216 & 243 & 240 & 228 & 237 \\ \hline
+			13 & 546 & 525 & 581 & 518 & 504 & 511 & 518 & 525 \\ \hline
+			14 & 79  & 72  & 72  & 74  & 76  & 79  & 75  & 74  \\ \hline
+			15 & 296 & 312 & 296 & 316 & 316 & 304 & 300 & 296 \\ \hline
+			16 & 150 & 166 & 162 & 160 & 154 & 146 & 146 & 148 \\ \hline
+			17 & 210 & 240 & 222 & 216 & 216 & 219 & 225 & 261 \\ \hline
+			18 & 160 & 158 & 148 & 144 & 164 & 154 & 156 & 160 \\ \hline
+			19 & 750 & 800 & 680 & 700 & 820 & 750 & 800 & 810 \\ \hline
+			20 & 292 & 304 & 324 & 312 & 292 & 349 & 324 & 292 \\ \hline
+			21 & 385 & 350 & 385 & 385 & 390 & 415 & 365 & 375 \\ \hline
+			22 & 402 & 450 & 426 & 420 & 490 & 438 & 456 & 474 \\ \hline
+			23 & 231 & 198 & 243 & 252 & 231 & 216 & 237 & 216 \\ \hline
+			24 & 430 & 390 & 401 & 390 & 380 & 365 & 340 & 370 \\ \hline
+			25 & 325 & 415 & 440 & 355 & 360 & 370 & 375 & 360 \\ \hline
+			26 & 508 & 497 & 469 & 525 & 546 & 609 & 518 & 539 \\ \hline
+			27 & 729 & 711 & 603 & 693 & 639 & 648 & 648 & 648 \\ \hline
+			28 & 142 & 148 & 164 & 148 & 144 & 648 & 150 & 150 \\ \hline
+			29 & 325 & 365 & 355 & 365 & 355 & 395 & 390 & 360 \\ \hline
+			30 & 320 & 268 & 300 & 324 & 288 & 292 & 309 & 292 \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\pagebreak
+
+As médias $\mu$ das 64 tabelas são apresentadas a seguir (para cada tabela \textit{i}, a média dos valores encontrados é apresentado como $\mu_i$):
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		\multicolumn{5}{|c|}{\textbf{Média dos valores encontrados}} \\ \hline
+			Valores de entrada & modo \textbf{\textcolor{blue}{f}} Paralelo & modo \textbf{\textcolor{blue}{m}} Paralelo & modo \textbf{\textcolor{blue}{f}} Seqüencial & modo \textbf{\textcolor{blue}{m}} Seqüencial\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_1 = 0.239556s$ & $\mu_2 = 0.209556s$ & $\mu_3 = 0.002889s$ & $\mu_4 = 0.002778s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_5 = 0.277833s$ & $\mu_6 = 0.269389s$ & $\mu_7 = 0.003111s$ & $\mu_8 = 0.002944s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_9 = 0.335389s$ & $\mu_{10} = 0.279500s$ & $\mu_{11} = 0.003722s$ & $\mu_{12} = 0.003389s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{13} = 0.321444s$ & $\mu_{14} = 0.316778s$ & $\mu_{15} = 0.003556s$ & $\mu_{16} = 0.003556s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{17} = 1.494500s$ & $\mu_{18} = 1.427611s$ & $\mu_{19} = 0.425389s$ & $\mu_{20} = 0.423278s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{21} = 1.697556s$ & $\mu_{22} = 1.658944s$ & $\mu_{23} = 0.488944s$ & $\mu_{24} = 0.481389s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{25} = 1.818500s$ & $\mu_{26} = 1.834444s$ & $\mu_{27} = 0.532556s$ & $\mu_{28} = 0.531333s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{29} = 1.963500s$ & $\mu_{30} = 1.887611s$ & $\mu_{31} = 0.560167s$ & $\mu_{32} = 0.561778s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{33} = 4.500722s$ & $\mu_{34} = 4.550833s$ & $\mu_{35} = 4.418722s$ & $\mu_{36} = 4.508389s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{37} = 4.883945s$ & $\mu_{38} = 4.932167s$ & $\mu_{39} = 4.877445s$ & $\mu_{40} = 4.999667s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{41} = 5.358390s$ & $\mu_{42} = 5.330444s$ & $\mu_{43} = 5.266722s$ & $\mu_{44} = 5.414667s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{45} = 5.510667s$ & $\mu_{46} = 5.561999s$ & $\mu_{47} = 5.640889s$ & $\mu_{48} = 5.678389s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{49} = 23.724335s$ & $\mu_{50} = 24.688722s$ & $\mu_{51} = 64.952284s$ & $\mu_{52} = 67.051161s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{53} = 26.072998s$ & $\mu_{54} = 26.799225s$ & $\mu_{55} = 70.969340s$ & $\mu_{56} = 73.219218s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{57} = 26.900336s$ & $\mu_{58} = 27.381558s$ & $\mu_{59} = 75.206441s$ & $\mu_{60} = 77.448778s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{61} = 27.501053s$ & $\mu_{62} = 28.197001s$ & $\mu_{63} = 78.326280s$ & $\mu_{64} = 80.682617s$\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Com as médias, obtemos os seguintes valores de desvio padrão $\sigma$ para cada uma das 64 tabelas:
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		\multicolumn{5}{|c|}{\textbf{Desvio Padrão dos valores encontrados}} \\ \hline
+			Valores de entrada & modo \textbf{\textcolor{blue}{f}} Paralelo & modo \textbf{\textcolor{blue}{m}} Paralelo & modo \textbf{\textcolor{blue}{f}} Seqüencial & modo \textbf{\textcolor{blue}{m}} Seqüencial\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_1 = 0.027083s$ & $\sigma_2 = 0.037590s$ & $\sigma_3 = 0.000314s$ & $\sigma_4 = 0.000533s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_5 = 0.035018s$ & $\sigma_6 = 0.053471s$ & $\sigma_7 = 0.000314s$ & $\sigma_8 = 0.000229s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_9 = 0.033672s$ & $\sigma_{10} = 0.052321s$ & $\sigma_{11} = 0.000448s$ & $\sigma_{12} = 0.000756s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{13} = 0.069326s$ & $\sigma_{14} = 0.041518s$ & $\sigma_{15} = 0.000497s$ & $\sigma_{16} = 0.000497s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{17} = 0.070209s$ & $\sigma_{18} = 0.059752s$ & $\sigma_{19} = 0.012234s$ & $\sigma_{20} = 0.013127s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{21} = 0.071127s$ & $\sigma_{22} = 0.081784s$ & $\sigma_{23} = 0.011355s$ & $\sigma_{24} = 0.011795s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{25} = 0.090297s$ & $\sigma_{26} = 0.061713s$ & $\sigma_{27} = 0.010139s$ & $\sigma_{28} = 0.009747s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{29} = 0.064856s$ & $\sigma_{30} = 0.078131s$ & $\sigma_{31} = 0.009506s$ & $\sigma_{32} = 0.011468s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{33} = 0.161185s$ & $\sigma_{34} = 0.171546s$ & $\sigma_{35} = 0.019295s$ & $\sigma_{36} = 0.042031s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{37} = 0.124031s$ & $\sigma_{38} = 0.132858s$ & $\sigma_{39} = 0.034664s$ & $\sigma_{40} = 0.034578s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{41} = 0.161365s$ & $\sigma_{42} = 0.151873s$ & $\sigma_{43} = 0.033366s$ & $\sigma_{44} = 0.099427s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{45} = 0.131767s$ & $\sigma_{46} = 0.137793s$ & $\sigma_{47} = 0.071417s$ & $\sigma_{48} = 0.111776s$\\ \hline \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{49} = 0.287316s$ & $\sigma_{50} = 0.311930s$ & $\sigma_{51} = 0.059372s$ & $\sigma_{52} = 0.694714s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{53} = 0.344984s$ & $\sigma_{54} = 0.555751s$ & $\sigma_{55} = 0.069362s$ & $\sigma_{56} = 0.060532s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{57} = 0.399570s$ & $\sigma_{58} = 0.313789s$ & $\sigma_{59} = 0.052476s$ & $\sigma_{60} = 0.058935s$\\ \hline
+			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{61} = 0.201157s$ & $\sigma_{62} = 0.162900s$ & $\sigma_{63} = 0.063503s$ & $\sigma_{64} = 0.044842s$\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+As tabelas com os valores das médias e dos desvios padrão estão já divididas de forma a separar as informações mais relevantes. Observe que, quanto às linhas, as tabelas estão divididas em 4 grupos diferentes, considerando os valores das entradas \textbf{\textcolor{blue}{p}} e \textbf{\textcolor{blue}{x}}. Agora, observando as colunas, perceba que estas estão dividas considerando o modo de execução do programa (\textbf{\textcolor{blue}{f}} ou \textbf{\textcolor{blue}{m}}) e se a execução foi feita em \textbf{seqüencial} ou \textbf{paralelo}. 
+\\
+\noindent A observação da tabela revela que:
+\begin{enumerate}
+	\item Conforme o valor de \textbf{\textcolor{blue}{x}} aumenta para um dado valor de \textbf{\textcolor{blue}{p}}, o tempo de execução também aumenta. A diferença é sútil para pequenos valores de \textbf{\textcolor{blue}{p}}, mas observe que para \textbf{\textcolor{blue}{p}} = 15000, a diferença do tempo de execução para \textbf{\textcolor{blue}{x}}$_1 = \frac{\pi}{2}$ e \textbf{\textcolor{blue}{x}}$_2 = 2\pi$ é de quase 4 segundos com uma execução paralela e pouco mais de 13s com uma execução seqüencial no modo \textbf{\textcolor{blue}{f}}. No modo \textbf{\textcolor{blue}{m}} temos um resultado semelhante.
+	\item Conforme o valor de \textbf{\textcolor{blue}{p}} aumenta, o tempo de execução aumenta bastante. Em particular, para a implementação deste programa, foi observado que para um valor próximo de \textbf{\textcolor{blue}{p}} = 3500, a execução paralela e a seqüencial demoram aproximadamente o mesmo tempo para calcular \textit{cos(x)}.
+	\item É notável que para valores baixos de \textbf{\textcolor{blue}{p}}, o modo seqüencial supera o paralelo, assim como para altos valores de precisão, o paralelo supera o seqüencial.
+	\item Os modos \textbf{\textcolor{blue}{m}} e \textbf{\textcolor{blue}{f}} com uma execução em paralela têm tempos de execução mais próximos que no modo seqüencial.
+	\item Para valores baixos de \textbf{\textcolor{blue}{p}}, a execução paralela possui um desvio padrão maior que a execução seqüencial. Isso muda conforme o valor de \textbf{\textcolor{blue}{p}} aumenta. Concluímos então que os valores da execução paralela são mais próximos da média que os valores da execução em seqüencial quanto maior for o valor de \textbf{\textcolor{blue}{p}}, e quanto menor for o valor \textbf{\textcolor{blue}{p}}, mais próximos da média são os valores da execução seqüencial em relação ao paralelo. 
+\end{enumerate}
+
+\pagebreak
+
+Nos gráficos a seguir, estão impressos apenas os 2 primeiros digitos decimais de cada valor médio $\mu$ encontrado, sem arredondamentos.
+
+\begin{center}
+	\begin{figure}[!h]
+		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 100$ ($1 \leq i \leq 16$).}}
+		\begin{tikzpicture} 
+			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			] 
+			\addplot coordinates {($\frac{\pi}{2}$,0.239556) ($\pi$,0.277833) ($\frac{3\pi}{2}$,0.335389) ($2\pi$,0.321444)};
+			\addplot coordinates {($\frac{\pi}{2}$,0.209556) ($\pi$,0.269389) ($\frac{3\pi}{2}$,0.279500) ($2\pi$,0.316778)};
+			\addplot coordinates {($\frac{\pi}{2}$,0.00) ($\pi$,0.00) ($\frac{3\pi}{2}$,0.00) ($2\pi$,0.00)};
+			\addplot coordinates {($\frac{\pi}{2}$,0.00) ($\pi$,0.00) ($\frac{3\pi}{2}$,0.00) ($2\pi$,0.00)};
+			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\end{axis}
+		\end{tikzpicture}
+	\end{figure}
+\end{center}
+
+\begin{center}
+	\begin{figure}[!h]
+		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 1000$ ($17 \leq i \leq 32$).}}
+		\begin{tikzpicture} 
+			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			] 
+			\addplot coordinates {($\frac{\pi}{2}$,1.494500) ($\pi$,1.697556) ($\frac{3\pi}{2}$,1.818500) ($2\pi$,1.963500)};
+			\addplot coordinates {($\frac{\pi}{2}$,1.427611) ($\pi$,1.658944) ($\frac{3\pi}{2}$,1.834444) ($2\pi$,1.887611)};
+			\addplot coordinates {($\frac{\pi}{2}$,0.425389) ($\pi$,0.488944) ($\frac{3\pi}{2}$,0.532556) ($2\pi$,0.560167)};
+			\addplot coordinates {($\frac{\pi}{2}$,0.423278) ($\pi$,0.481389) ($\frac{3\pi}{2}$,0.531333) ($2\pi$,0.561778)};
+			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\end{axis}
+		\end{tikzpicture}
+	\end{figure}
+\end{center}
+
+\begin{center}
+	\begin{figure}[!h]
+		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 3500$ ($33 \leq i \leq 48$).}}
+		\begin{tikzpicture} 
+			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			] 
+			\addplot coordinates {($\frac{\pi}{2}$,4.500722) ($\pi$,4.883945) ($\frac{3\pi}{2}$,5.358390) ($2\pi$,5.510667)};
+			\addplot coordinates {($\frac{\pi}{2}$,4.550833) ($\pi$,4.932167) ($\frac{3\pi}{2}$,5.330444) ($2\pi$,5.561999)};
+			\addplot coordinates {($\frac{\pi}{2}$,4.418722) ($\pi$,4.877445) ($\frac{3\pi}{2}$,5.266722) ($2\pi$,5.640889)};
+			\addplot coordinates {($\frac{\pi}{2}$,4.508389) ($\pi$,4.999667) ($\frac{3\pi}{2}$,5.414667) ($2\pi$,5.678389)};
+			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\end{axis}
+		\end{tikzpicture}
+	\end{figure}
+\end{center}
+
+\pagebreak
+
+\begin{center}
+	\begin{figure}[!h]
+		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 15000$ ($49 \leq i \leq 64$).}}
+		\begin{tikzpicture} 
+			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			] 
+			\addplot coordinates {($\frac{\pi}{2}$,23.724335) ($\pi$,26.072998) ($\frac{3\pi}{2}$,26.900336) ($2\pi$,27.501053)};
+			\addplot coordinates {($\frac{\pi}{2}$,24.688722) ($\pi$,26.799225) ($\frac{3\pi}{2}$,27.381558) ($2\pi$,28.197001)};
+			\addplot coordinates {($\frac{\pi}{2}$,64.952284) ($\pi$,70.969340) ($\frac{3\pi}{2}$,75.206441) ($2\pi$,78.326280)};
+			\addplot coordinates {($\frac{\pi}{2}$,67.051161) ($\pi$,73.219218) ($\frac{3\pi}{2}$,77.448778) ($2\pi$,80.682617)};
+			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\end{axis}
+		\end{tikzpicture}
+	\end{figure}
+\end{center}
+
+\section{Conclusão}
+
+A maioria dos resultados obtidos eram esperados. Foi um pouco surpreendente, porém, descobrir que o valor de \textbf{\textcolor{blue}{x}} faz uma diferença notável no tempo de execução. Ainda, não esperava que o seqüencial fosse tão superior ao paralelo para baixos valores de precisão.
+Além dos testes apresentados aqui, também foram feitas execuções com diferentes valores de \textbf{\textcolor{blue}{q}}. Apesar de não ter tabelas aqui com estes resultados, foi evidenciado que para valores de \textbf{\textcolor{blue}{q}} superiores que 1 e interiores que 4 (lembre que a máquina que testou tem 4 núcleos), os resultados do paralelo tendem a se apróximar dos resultados da execução seqüencial. Ainda, para valores de \textbf{\textcolor{blue}{q}} $> 4$ não foi evidenciada tanta diferença no desempenho. Para \textbf{\textcolor{blue}{q}} $= 10$, o tempo de execução foi, em média, cerca de 2s mais lerdo que para \textbf{\textcolor{blue}{q}} = 4. Tal resultado foi obtido com poucos testes e está sujeito a erros.
+
+\section{Comentários sobre a biblioteca GMP}
+
+A biblioteca \textbf{GMP} \textit{(= GNU Multi-Precision Library)} funciona alocando espaço dinamicamente para representar os números e realocando os espaços conforme necessário, caso seja necessário para representar algum número inteiro.
+Para representar estes números, a biblioteca basicamente cria estruturas de dados chamadas de \quotes{membro} \textit{(= limb)} e agrupa estes \quotes{membros} para representar algum número. Estes membros são armazenados em \textit{arrays}.
+A seguir, a descrição de um membro, em inglês, retirada da própria documentação do GMP:
+\begin{verbatim}
+A limb means the part of a multi-precision number that fits in a single machine 
+word. (We chose this word because a limb of the human body is analogous to a 
+digit, only larger, and containing several digits.) Normally a limb is 32 or 64 
+bits. The C data type for a limb is mp_limb_t.
+\end{verbatim}
+Já para fazer a representação dos números com ponto-flutuante, o procedimento é mais complexo, não fazendo apenas uso de \textit{limbs}.
+O GMP guarda a precisão da \textit{mantissa}, em \textit{limbs}, e ao realizar os cálculos, o objetivo é produzir o número de precisão p de limbs de resultado. Assim, para uma precisão de 100 limbs, devemos ter 100 limbs de resultado.
+O expoente também é composto de limbs e é produzido de modo similar. O número com ponto-flutuante, finalmente, é representado em uma string usando a \textit{mantissa} M e o \textit{expoente} N em um formato M@N (ou MeN alternativamente, caso a base seja menor ou igual a 10).
+
+\end{document}
