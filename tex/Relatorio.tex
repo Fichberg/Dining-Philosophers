@@ -9,6 +9,7 @@
 \usepackage{textcomp}
 \usepackage{caption}
 \usepackage{pgfplots}
+
 \definecolor{sblue}{rgb}{0, 0, 1}
 \definecolor{blue}{rgb}{0, 0.55, 1}
 \definecolor{red}{rgb}{1, 0, 0}
@@ -25,7 +26,7 @@ HD Seagate 7200RPM 1TB \\
 OS: Ubuntu 12.04 LTS\\
 OS type: 32-bit
 
-\section{Testes: informações}
+\section{Informações}
 
 O programa foi testado para os seguintes valores de entrada:
 \begin{itemize}
@@ -46,7 +47,7 @@ O programa foi testado para os seguintes valores de entrada:
 \noindent \textbf{Obs}: pesos ordenados em ordem crescente com relação aos identificadores dos filósofos. \\
 \noindent \textbf{Para cada entrada}, o programa foi rodado \textbf{8 vezes}. No final, sera apresentado um gráfico com a média de porções consumidas por filósofo em todas as execuções.\\
 
-\section{Testes: resultados}
+\section{Tabelas de resultados das execuções}
 
 As tabelas 1 e 2 são referentes às 8 execuções do arquivo \textbf{\textcolor{blue}{simple.txt}}. Já as tabelas 3 e 4, são referentes às 8 execuções do arquivo \textbf{\textcolor{blue}{complex.txt}}. Nas tabelas a seguir, \textbf{$C_i$} representa a quantidade de comida consumida na \textit{i-ésima} execução.
 
@@ -128,6 +129,8 @@ As tabelas 1 e 2 são referentes às 8 execuções do arquivo \textbf{\textcolor
 	\end{center}
 \end{table}
 
+\pagebreak
+
 \begin{table}[!h]
 	\begin{center}
 		\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
@@ -170,90 +173,86 @@ As tabelas 1 e 2 são referentes às 8 execuções do arquivo \textbf{\textcolor
 	\end{center}
 \end{table}
 
-\pagebreak
 
-As médias $\mu$ das 64 tabelas são apresentadas a seguir (para cada tabela \textit{i}, a média dos valores encontrados é apresentado como $\mu_i$):
+As médias de consumo $\mu$ de cada filósofo $F_i, 1 \leq i \leq 30$ das $T_j$ tabelas anteriores, $1 \leq j \leq 4$ são apresentadas em duas novas tabelas a seguir, uma para cada arquivo de entrada:
+
 \begin{table}[!h]
 	\begin{center}
-		\begin{tabular}{| c | c | c | c | c |}
+		\begin{tabular}{| c | c | c |}
 		\hline
-		\multicolumn{5}{|c|}{\textbf{Média dos valores encontrados}} \\ \hline
-			Valores de entrada & modo \textbf{\textcolor{blue}{f}} Paralelo & modo \textbf{\textcolor{blue}{m}} Paralelo & modo \textbf{\textcolor{blue}{f}} Seqüencial & modo \textbf{\textcolor{blue}{m}} Seqüencial\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_1 = 0.239556s$ & $\mu_2 = 0.209556s$ & $\mu_3 = 0.002889s$ & $\mu_4 = 0.002778s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_5 = 0.277833s$ & $\mu_6 = 0.269389s$ & $\mu_7 = 0.003111s$ & $\mu_8 = 0.002944s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_9 = 0.335389s$ & $\mu_{10} = 0.279500s$ & $\mu_{11} = 0.003722s$ & $\mu_{12} = 0.003389s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{13} = 0.321444s$ & $\mu_{14} = 0.316778s$ & $\mu_{15} = 0.003556s$ & $\mu_{16} = 0.003556s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{17} = 1.494500s$ & $\mu_{18} = 1.427611s$ & $\mu_{19} = 0.425389s$ & $\mu_{20} = 0.423278s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{21} = 1.697556s$ & $\mu_{22} = 1.658944s$ & $\mu_{23} = 0.488944s$ & $\mu_{24} = 0.481389s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{25} = 1.818500s$ & $\mu_{26} = 1.834444s$ & $\mu_{27} = 0.532556s$ & $\mu_{28} = 0.531333s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{29} = 1.963500s$ & $\mu_{30} = 1.887611s$ & $\mu_{31} = 0.560167s$ & $\mu_{32} = 0.561778s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{33} = 4.500722s$ & $\mu_{34} = 4.550833s$ & $\mu_{35} = 4.418722s$ & $\mu_{36} = 4.508389s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{37} = 4.883945s$ & $\mu_{38} = 4.932167s$ & $\mu_{39} = 4.877445s$ & $\mu_{40} = 4.999667s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{41} = 5.358390s$ & $\mu_{42} = 5.330444s$ & $\mu_{43} = 5.266722s$ & $\mu_{44} = 5.414667s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{45} = 5.510667s$ & $\mu_{46} = 5.561999s$ & $\mu_{47} = 5.640889s$ & $\mu_{48} = 5.678389s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\mu_{49} = 23.724335s$ & $\mu_{50} = 24.688722s$ & $\mu_{51} = 64.952284s$ & $\mu_{52} = 67.051161s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\mu_{53} = 26.072998s$ & $\mu_{54} = 26.799225s$ & $\mu_{55} = 70.969340s$ & $\mu_{56} = 73.219218s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\mu_{57} = 26.900336s$ & $\mu_{58} = 27.381558s$ & $\mu_{59} = 75.206441s$ & $\mu_{60} = 77.448778s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\mu_{61} = 27.501053s$ & $\mu_{62} = 28.197001s$ & $\mu_{63} = 78.326280s$ & $\mu_{64} = 80.682617s$\\ \hline
+		\multicolumn{3}{|c|}{\textbf{Tabela 5}} \\ \hline
+		\multicolumn{3}{|c|}{\textbf{Arquivo \textcolor{blue}{simple.txt}} \& \textbf{\textcolor{blue}{$R_s$}} = 1000  } \\ \hline
+			$\mu$ & $T_1$ (\textbf{modo} = \textbf{\textcolor{blue}{U}}) & $T_2$ (\textbf{modo} = \textbf{\textcolor{blue}{P}}) \\ \hline 
+			$F_1$ & 198.750 & 443.625 \\ \hline
+			$F_2$ & 200.500 & 44.125  \\ \hline
+			$F_3$ & 200.625 & 255.500 \\ \hline
+			$F_4$ & 200.625 & 213.500 \\ \hline
+			$F_5$ & 199.500 & 43.250  \\ \hline	
 		\end{tabular}
 	\end{center}
 \end{table}
 
-Com as médias, obtemos os seguintes valores de desvio padrão $\sigma$ para cada uma das 64 tabelas:
+\pagebreak
+
 \begin{table}[!h]
 	\begin{center}
-		\begin{tabular}{| c | c | c | c | c |}
+		\begin{tabular}{| c | c | c |}
 		\hline
-		\multicolumn{5}{|c|}{\textbf{Desvio Padrão dos valores encontrados}} \\ \hline
-			Valores de entrada & modo \textbf{\textcolor{blue}{f}} Paralelo & modo \textbf{\textcolor{blue}{m}} Paralelo & modo \textbf{\textcolor{blue}{f}} Seqüencial & modo \textbf{\textcolor{blue}{m}} Seqüencial\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_1 = 0.027083s$ & $\sigma_2 = 0.037590s$ & $\sigma_3 = 0.000314s$ & $\sigma_4 = 0.000533s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_5 = 0.035018s$ & $\sigma_6 = 0.053471s$ & $\sigma_7 = 0.000314s$ & $\sigma_8 = 0.000229s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_9 = 0.033672s$ & $\sigma_{10} = 0.052321s$ & $\sigma_{11} = 0.000448s$ & $\sigma_{12} = 0.000756s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 100$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{13} = 0.069326s$ & $\sigma_{14} = 0.041518s$ & $\sigma_{15} = 0.000497s$ & $\sigma_{16} = 0.000497s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{17} = 0.070209s$ & $\sigma_{18} = 0.059752s$ & $\sigma_{19} = 0.012234s$ & $\sigma_{20} = 0.013127s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{21} = 0.071127s$ & $\sigma_{22} = 0.081784s$ & $\sigma_{23} = 0.011355s$ & $\sigma_{24} = 0.011795s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{25} = 0.090297s$ & $\sigma_{26} = 0.061713s$ & $\sigma_{27} = 0.010139s$ & $\sigma_{28} = 0.009747s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 1000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{29} = 0.064856s$ & $\sigma_{30} = 0.078131s$ & $\sigma_{31} = 0.009506s$ & $\sigma_{32} = 0.011468s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{33} = 0.161185s$ & $\sigma_{34} = 0.171546s$ & $\sigma_{35} = 0.019295s$ & $\sigma_{36} = 0.042031s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{37} = 0.124031s$ & $\sigma_{38} = 0.132858s$ & $\sigma_{39} = 0.034664s$ & $\sigma_{40} = 0.034578s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{41} = 0.161365s$ & $\sigma_{42} = 0.151873s$ & $\sigma_{43} = 0.033366s$ & $\sigma_{44} = 0.099427s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 3500$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{45} = 0.131767s$ & $\sigma_{46} = 0.137793s$ & $\sigma_{47} = 0.071417s$ & $\sigma_{48} = 0.111776s$\\ \hline \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{\pi}{2}$ & $\sigma_{49} = 0.287316s$ & $\sigma_{50} = 0.311930s$ & $\sigma_{51} = 0.059372s$ & $\sigma_{52} = 0.694714s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \pi$ & $\sigma_{53} = 0.344984s$ & $\sigma_{54} = 0.555751s$ & $\sigma_{55} = 0.069362s$ & $\sigma_{56} = 0.060532s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= \frac{3\pi}{2}$ & $\sigma_{57} = 0.399570s$ & $\sigma_{58} = 0.313789s$ & $\sigma_{59} = 0.052476s$ & $\sigma_{60} = 0.058935s$\\ \hline
-			\textbf{\textcolor{blue}{p}} $= 15000$ e \textbf{\textcolor{blue}{x}} $= 2\pi$ & $\sigma_{61} = 0.201157s$ & $\sigma_{62} = 0.162900s$ & $\sigma_{63} = 0.063503s$ & $\sigma_{64} = 0.044842s$\\ \hline
+		\multicolumn{3}{|c|}{\textbf{Tabela 6}} \\ \hline
+		\multicolumn{3}{|c|}{\textbf{Arquivo \textcolor{blue}{complex.txt}} \& \textbf{\textcolor{blue}{$R_c$}} = 10000  } \\ \hline
+			$\mu$ & $T_3$ (\textbf{modo} = \textbf{\textcolor{blue}{U}}) & $T_4$ (\textbf{modo} = \textbf{\textcolor{blue}{P}}) \\ \hline 
+			$F_1$ & 335.125 & 373.125 \\ \hline
+			$F_2$ & 334.250 & 230.250 \\ \hline
+			$F_3$ & 336.000 & 303.000 \\ \hline
+			$F_4$ & 334.625 & 226.875 \\ \hline
+			$F_5$ & 335.000 & 306.000 \\ \hline
+			$F_6$ & 334.375 & 450.000 \\ \hline
+			$F_7$ & 330.625 & 311.500 \\ \hline
+			$F_8$ & 334.250 & 542.500 \\ \hline
+			$F_9$ & 335.000 & 144.250 \\ \hline
+			$F_{10}$ & 332.750 & 313.500 \\ \hline
+			$F_{11}$ & 333.000 & 229.750 \\ \hline
+			$F_{12}$ & 337.750 & 232.500 \\ \hline
+			$F_{13}$ & 330.625 & 528.500 \\ \hline
+			$F_{14}$ & 328.750 & 75.125  \\ \hline
+			$F_{15}$ & 328.250 & 304.500 \\ \hline
+			$F_{16}$ & 327.500 & 154.000 \\ \hline
+			$F_{17}$ & 336.750 & 226.125 \\ \hline
+			$F_{18}$ & 331.750 & 155.500 \\ \hline
+			$F_{19}$ & 339.125 & 763.750 \\ \hline
+			$F_{20}$ & 326.875 & 311.125 \\ \hline
+			$F_{21}$ & 336.375 & 381.250 \\ \hline
+			$F_{22}$ & 335.625 & 444.500 \\ \hline
+			$F_{23}$ & 334.000 & 228.000 \\ \hline
+			$F_{24}$ & 335.875 & 383.250 \\ \hline
+			$F_{25}$ & 336.875 & 375.000 \\ \hline
+			$F_{26}$ & 331.250 & 526.375 \\ \hline
+			$F_{27}$ & 330.625 & 664.875 \\ \hline
+			$F_{28}$ & 330.000 & 211.750 \\ \hline
+			$F_{29}$ & 332.625 & 363.750 \\ \hline
+			$F_{30}$ & 334.375 & 299.125 \\ \hline
 		\end{tabular}
 	\end{center}
 \end{table}
 
-As tabelas com os valores das médias e dos desvios padrão estão já divididas de forma a separar as informações mais relevantes. Observe que, quanto às linhas, as tabelas estão divididas em 4 grupos diferentes, considerando os valores das entradas \textbf{\textcolor{blue}{p}} e \textbf{\textcolor{blue}{x}}. Agora, observando as colunas, perceba que estas estão dividas considerando o modo de execução do programa (\textbf{\textcolor{blue}{f}} ou \textbf{\textcolor{blue}{m}}) e se a execução foi feita em \textbf{seqüencial} ou \textbf{paralelo}. 
-\\
-\noindent A observação da tabela revela que:
-\begin{enumerate}
-	\item Conforme o valor de \textbf{\textcolor{blue}{x}} aumenta para um dado valor de \textbf{\textcolor{blue}{p}}, o tempo de execução também aumenta. A diferença é sútil para pequenos valores de \textbf{\textcolor{blue}{p}}, mas observe que para \textbf{\textcolor{blue}{p}} = 15000, a diferença do tempo de execução para \textbf{\textcolor{blue}{x}}$_1 = \frac{\pi}{2}$ e \textbf{\textcolor{blue}{x}}$_2 = 2\pi$ é de quase 4 segundos com uma execução paralela e pouco mais de 13s com uma execução seqüencial no modo \textbf{\textcolor{blue}{f}}. No modo \textbf{\textcolor{blue}{m}} temos um resultado semelhante.
-	\item Conforme o valor de \textbf{\textcolor{blue}{p}} aumenta, o tempo de execução aumenta bastante. Em particular, para a implementação deste programa, foi observado que para um valor próximo de \textbf{\textcolor{blue}{p}} = 3500, a execução paralela e a seqüencial demoram aproximadamente o mesmo tempo para calcular \textit{cos(x)}.
-	\item É notável que para valores baixos de \textbf{\textcolor{blue}{p}}, o modo seqüencial supera o paralelo, assim como para altos valores de precisão, o paralelo supera o seqüencial.
-	\item Os modos \textbf{\textcolor{blue}{m}} e \textbf{\textcolor{blue}{f}} com uma execução em paralela têm tempos de execução mais próximos que no modo seqüencial.
-	\item Para valores baixos de \textbf{\textcolor{blue}{p}}, a execução paralela possui um desvio padrão maior que a execução seqüencial. Isso muda conforme o valor de \textbf{\textcolor{blue}{p}} aumenta. Concluímos então que os valores da execução paralela são mais próximos da média que os valores da execução em seqüencial quanto maior for o valor de \textbf{\textcolor{blue}{p}}, e quanto menor for o valor \textbf{\textcolor{blue}{p}}, mais próximos da média são os valores da execução seqüencial em relação ao paralelo. 
-\end{enumerate}
+\section{Gráficos}
+
+Uma vez conhecidas as médias (Tabelas 5 e 6), podemos obter os seguintes gráficos de barras que ilustram a distribuição das porções de comida \textbf{\textcolor{blue}{$R_c$}} e \textbf{\textcolor{blue}{$R_s$}}. Cada valor da abscissa representa um filósofo.
 
 \pagebreak
 
-Nos gráficos a seguir, estão impressos apenas os 2 primeiros digitos decimais de cada valor médio $\mu$ encontrado, sem arredondamentos.
+Nos gráficos a seguir, estão impressos apenas os 2 primeiros digitos decimais de cada valor médio $\mu$ encontrado.
 
 \begin{center}
 	\begin{figure}[!h]
-		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 100$ ($1 \leq i \leq 16$).}}
+		{\caption*{Gráfico formado com valores médios $\mu$ obtidos anteriormente para o arquivo \textbf{\textcolor{blue}{simple.txt}} no modo \textbf{\textcolor{blue}{U}} com \textbf{\textcolor{blue}{$R_s$}} = 1000}}
 		\begin{tikzpicture} 
-			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
-				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
-				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			\begin{axis}[ ymin=0, ymax=250 ,ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={Consumo médio $\mu$}, xlabel={Filósofos}, symbolic x coords={1,2,3,4,5}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2.2, every node near coord/.append style={font=\tiny, rotate=90, anchor=west},bar width=15pt
 			] 
-			\addplot coordinates {($\frac{\pi}{2}$,0.239556) ($\pi$,0.277833) ($\frac{3\pi}{2}$,0.335389) ($2\pi$,0.321444)};
-			\addplot coordinates {($\frac{\pi}{2}$,0.209556) ($\pi$,0.269389) ($\frac{3\pi}{2}$,0.279500) ($2\pi$,0.316778)};
-			\addplot coordinates {($\frac{\pi}{2}$,0.00) ($\pi$,0.00) ($\frac{3\pi}{2}$,0.00) ($2\pi$,0.00)};
-			\addplot coordinates {($\frac{\pi}{2}$,0.00) ($\pi$,0.00) ($\frac{3\pi}{2}$,0.00) ($2\pi$,0.00)};
-			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\addplot coordinates {(1,198.750) (2,200.500) (3,200.625) (4,200.625) (5,199.500)};
+			\legend{Comida consumida pelo filósofo}
 			\end{axis}
 		\end{tikzpicture}
 	\end{figure}
@@ -261,35 +260,14 @@ Nos gráficos a seguir, estão impressos apenas os 2 primeiros digitos decimais 
 
 \begin{center}
 	\begin{figure}[!h]
-		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 1000$ ($17 \leq i \leq 32$).}}
+		{\caption*{Gráfico formado com valores médios $\mu$ obtidos anteriormente para o arquivo \textbf{\textcolor{blue}{simple.txt}} no modo \textbf{\textcolor{blue}{U}} com \textbf{\textcolor{blue}{$R_s$}} = 1000}}
 		\begin{tikzpicture} 
-			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
-				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
-				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			\begin{axis}[ ymin=0, ymax=500 ,ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={Consumo médio $\mu$}, xlabel={Filósofos}, symbolic x coords={1,2,3,4,5}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2.2, every node near coord/.append style={font=\tiny, rotate=90, anchor=west},bar width=15pt
 			] 
-			\addplot coordinates {($\frac{\pi}{2}$,1.494500) ($\pi$,1.697556) ($\frac{3\pi}{2}$,1.818500) ($2\pi$,1.963500)};
-			\addplot coordinates {($\frac{\pi}{2}$,1.427611) ($\pi$,1.658944) ($\frac{3\pi}{2}$,1.834444) ($2\pi$,1.887611)};
-			\addplot coordinates {($\frac{\pi}{2}$,0.425389) ($\pi$,0.488944) ($\frac{3\pi}{2}$,0.532556) ($2\pi$,0.560167)};
-			\addplot coordinates {($\frac{\pi}{2}$,0.423278) ($\pi$,0.481389) ($\frac{3\pi}{2}$,0.531333) ($2\pi$,0.561778)};
-			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
-			\end{axis}
-		\end{tikzpicture}
-	\end{figure}
-\end{center}
-
-\begin{center}
-	\begin{figure}[!h]
-		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 3500$ ($33 \leq i \leq 48$).}}
-		\begin{tikzpicture} 
-			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
-				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
-				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
-			] 
-			\addplot coordinates {($\frac{\pi}{2}$,4.500722) ($\pi$,4.883945) ($\frac{3\pi}{2}$,5.358390) ($2\pi$,5.510667)};
-			\addplot coordinates {($\frac{\pi}{2}$,4.550833) ($\pi$,4.932167) ($\frac{3\pi}{2}$,5.330444) ($2\pi$,5.561999)};
-			\addplot coordinates {($\frac{\pi}{2}$,4.418722) ($\pi$,4.877445) ($\frac{3\pi}{2}$,5.266722) ($2\pi$,5.640889)};
-			\addplot coordinates {($\frac{\pi}{2}$,4.508389) ($\pi$,4.999667) ($\frac{3\pi}{2}$,5.414667) ($2\pi$,5.678389)};
-			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\addplot coordinates {(1,443.625) (2,44.125) (3,255.500) (4,213.500) (5,43.250)};
+			\legend{Comida consumida pelo filósofo}
 			\end{axis}
 		\end{tikzpicture}
 	\end{figure}
@@ -297,42 +275,39 @@ Nos gráficos a seguir, estão impressos apenas os 2 primeiros digitos decimais 
 
 \pagebreak
 
+
 \begin{center}
 	\begin{figure}[!h]
-		{\caption*{Gráfico formado com os $i$ valores médios $\mu_{i}$ obtidos anteriormente para \textbf{\textcolor{blue}{p}} $= 15000$ ($49 \leq i \leq 64$).}}
+		{\caption*{Gráfico formado com valores médios $\mu$ obtidos anteriormente para o arquivo \textbf{\textcolor{blue}{complex.txt}} no modo \textbf{\textcolor{blue}{U}} com \textbf{\textcolor{blue}{$R_c$}} = 10000}}
 		\begin{tikzpicture} 
-			\begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
-				ylabel={$\mu_{i}$}, xlabel={$i$}, symbolic x coords={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$}, xtick=data, nodes near coords, 
-				nodes near coords align={vertical}, x post scale=2, every node near coord/.append style={font=\tiny},bar width=15pt
+			\begin{axis}[ ymin=0, ymax=400 ,ybar, enlargelimits=0.08, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={Consumo médio $\mu$}, xlabel={Filósofos}, symbolic x coords={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2.2, every node near coord/.append style={font=\tiny, rotate=90, anchor=west},bar width=6pt
 			] 
-			\addplot coordinates {($\frac{\pi}{2}$,23.724335) ($\pi$,26.072998) ($\frac{3\pi}{2}$,26.900336) ($2\pi$,27.501053)};
-			\addplot coordinates {($\frac{\pi}{2}$,24.688722) ($\pi$,26.799225) ($\frac{3\pi}{2}$,27.381558) ($2\pi$,28.197001)};
-			\addplot coordinates {($\frac{\pi}{2}$,64.952284) ($\pi$,70.969340) ($\frac{3\pi}{2}$,75.206441) ($2\pi$,78.326280)};
-			\addplot coordinates {($\frac{\pi}{2}$,67.051161) ($\pi$,73.219218) ($\frac{3\pi}{2}$,77.448778) ($2\pi$,80.682617)};
-			\legend{\textbf{\textcolor{blue}{f}} Paralelo,\textbf{\textcolor{blue}{m}} Paralelo,\textbf{\textcolor{blue}{f}} Seqüencial,\textbf{\textcolor{blue}{m}} Seqüencial}
+			\addplot coordinates {(1,335.125) (2,334.250) (3,336.000) (4,334.625) (5,335.000) (6,334.375) (7,330.625) (8,334.250) (9,335.000) (10,332.750) (11,333.000) (12,337.750) (13,330.625) (14,328.750) (15,328.250) (16,327.500) (17,336.750) (18,331.750) (19,339.125) (20,326.875) (21,336.375) (22,335.625) (23,334.000) (24,335.875) (25,336.875) (26,331.250) (27,330.625) (28,330.000) (29,332.625) (30,334.375)};
+			\legend{Comida consumida pelo filósofo}
 			\end{axis}
 		\end{tikzpicture}
 	\end{figure}
 \end{center}
 
-\section{Conclusão}
+\begin{center}
+	\begin{figure}[!h]
+		{\caption*{Gráfico formado com valores médios $\mu$ obtidos anteriormente para o arquivo \textbf{\textcolor{blue}{complex.txt}} no modo \textbf{\textcolor{blue}{P}} com \textbf{\textcolor{blue}{$R_c$}} = 10000}}
+		\begin{tikzpicture} 
+			\begin{axis}[ ymin=0, ymax=860 ,ybar, enlargelimits=0.08, legend style={at={(0.5,-0.20)}, anchor=north,legend columns=-1}, 
+				ylabel={Consumo médio $\mu$}, xlabel={Filósofos}, symbolic x coords={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30}, xtick=data, nodes near coords, 
+				nodes near coords align={vertical}, x post scale=2.2, every node near coord/.append style={font=\tiny, rotate=90, anchor=west},bar width=6pt
+			] 
+			\addplot coordinates {(1,373.125) (2,230.250) (3,303.000) (4,226.875) (5,306.000) (6,450.000) (7,311.500) (8,542.500) (9,144.250) (10,313.500) (11,229.750) (12,232.500) (13,528.500) (14,75.125) (15,304.500) (16,154.000) (17,226.125) (18,155.500) (19,763.750) (20,311.125) (21,381.250) (22,444.500) (23,228.000) (24,383.250) (25,375.000) (26,526.375) (27,664.875) (28,211.750) (29,363.750) (30,299.125)};
+			\legend{Comida consumida pelo filósofo}
+			\end{axis}
+		\end{tikzpicture}
+	\end{figure}
+\end{center}
 
-A maioria dos resultados obtidos eram esperados. Foi um pouco surpreendente, porém, descobrir que o valor de \textbf{\textcolor{blue}{x}} faz uma diferença notável no tempo de execução. Ainda, não esperava que o seqüencial fosse tão superior ao paralelo para baixos valores de precisão.
-Além dos testes apresentados aqui, também foram feitas execuções com diferentes valores de \textbf{\textcolor{blue}{q}}. Apesar de não ter tabelas aqui com estes resultados, foi evidenciado que para valores de \textbf{\textcolor{blue}{q}} superiores que 1 e interiores que 4 (lembre que a máquina que testou tem 4 núcleos), os resultados do paralelo tendem a se apróximar dos resultados da execução seqüencial. Ainda, para valores de \textbf{\textcolor{blue}{q}} $> 4$ não foi evidenciada tanta diferença no desempenho. Para \textbf{\textcolor{blue}{q}} $= 10$, o tempo de execução foi, em média, cerca de 2s mais lerdo que para \textbf{\textcolor{blue}{q}} = 4. Tal resultado foi obtido com poucos testes e está sujeito a erros.
+\section{Comentários}
 
-\section{Comentários sobre a biblioteca GMP}
-
-A biblioteca \textbf{GMP} \textit{(= GNU Multi-Precision Library)} funciona alocando espaço dinamicamente para representar os números e realocando os espaços conforme necessário, caso seja necessário para representar algum número inteiro.
-Para representar estes números, a biblioteca basicamente cria estruturas de dados chamadas de \quotes{membro} \textit{(= limb)} e agrupa estes \quotes{membros} para representar algum número. Estes membros são armazenados em \textit{arrays}.
-A seguir, a descrição de um membro, em inglês, retirada da própria documentação do GMP:
-\begin{verbatim}
-A limb means the part of a multi-precision number that fits in a single machine 
-word. (We chose this word because a limb of the human body is analogous to a 
-digit, only larger, and containing several digits.) Normally a limb is 32 or 64 
-bits. The C data type for a limb is mp_limb_t.
-\end{verbatim}
-Já para fazer a representação dos números com ponto-flutuante, o procedimento é mais complexo, não fazendo apenas uso de \textit{limbs}.
-O GMP guarda a precisão da \textit{mantissa}, em \textit{limbs}, e ao realizar os cálculos, o objetivo é produzir o número de precisão p de limbs de resultado. Assim, para uma precisão de 100 limbs, devemos ter 100 limbs de resultado.
-O expoente também é composto de limbs e é produzido de modo similar. O número com ponto-flutuante, finalmente, é representado em uma string usando a \textit{mantissa} M e o \textit{expoente} N em um formato M@N (ou MeN alternativamente, caso a base seja menor ou igual a 10).
+Os resultados foram os esperados. Assim como mencionado no enunciado do exercício, os resultados para os modos \textbf{\textcolor{blue}{U}} e \textbf{\textcolor{blue}{P}} deram, respectivamente, barras de praticamente o mesmo tamanho no primeiro caso e barras proporcionais aos pesos dos filósofos no segundo. 
 
 \end{document}
