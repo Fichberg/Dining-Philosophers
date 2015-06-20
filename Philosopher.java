@@ -37,7 +37,6 @@ public class Philosopher implements Runnable
 			}
 		}
 		
-		release_remaining_threads();
 		if(Dinner.get_mode() == 'U') System.out.println("Philosopher" + this.number+" consumed "+ this.consumed + " ("+meals+" meals).");
 		else /*mode == P*/ System.out.println("Philosopher" + this.number+" (weight: "+ this.weight +") consumed "+ this.consumed + " ("+meals+" meals).");
 	}
@@ -132,20 +131,9 @@ public class Philosopher implements Runnable
 			e.printStackTrace();
 		}
 	}
-
 	
 	private void digest() throws InterruptedException
 	{
 		Thread.sleep(50); //Philosophers degustate and then digest for a fixed amount of 0.05s. They eat REALLY fast!
-	}
-
-	private void release_remaining_threads()
-	{
-		try{
-			monitor.release_all();
-		}
-		catch (InterruptedException e) {
-			System.out.println(e);
-		}
 	}
 }

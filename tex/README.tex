@@ -18,9 +18,6 @@
 
 \newcommand{\vsp}{\vspace{0.2in}}
 
-
-
-
 \begin{document}
 
 
@@ -124,7 +121,7 @@ class Monitor{
 
 Todos os métodos do monitor são funções públicas, e as suas funções privadas são, na verdade, apenas \textit{aliases} para seguir as especificações do enunciado. O monitor foi implementado de forma a garantir exclusão mútua para cada par de filosófos que concorrerem a um garfo (\textit{que é um recurso}). Todos os métodos do monitor, quando invocados, tentam se apoderar da trava, que só é liberada quando o filósofo (que é uma \textit{thread}) que a obteve terminou de fazer o que precisava. Ainda, internamente, os métodos usam \textit{wait} e \textit{signal} para solucionar os problemas com a trava.
 
-Ao entrar na sala de jantar, um filósofo sabe qual é o seu lugar. A primeira coisa que ele vê é se os seus 2 garfos estão disponíveis. Se estiver, ele vai até a mesa de jantar, usa o par de garfos e faz sua refeição, caso contrário, ele espera até os seus garfos estarem disponíveis. Nota que, para 5 filósofos, por exemplo, essa implementação só permite 2 filosófos não vizinhos na mesa simultaneamente, já que não há como um filósofo segurar um garfo e esperar pelo outro.
+Ao entrar na sala de jantar, um filósofo sabe qual é o seu lugar. A primeira coisa que ele vê é quantos garfos disponíveis ainda restam sobre a mesa. Se o número de garfos $G$ for $G \leq 1$, o filósofo aguarda até ter mais de um garfo disponível sobre a mesa. Caso $G > 1$, o filósofo olha, na seqüência se o seu garfo esquerdo está disponível. Caso não esteja, o filósofo aguarda a sua disponibilidade. Uma vez com o garfo direito obtido, o filósofo parte em busca do garfo direito. Uma vez conseguido ambos os garfos, o filósofo saboreia o seu miojo e, depois disso, avisa todos os que estavam esperando os seus garfos que agora eles estão disponíveis. Também avisa que o número de garfos na mesa já é $G > 1$.
 
 \pagebreak
 \section{Guia de implementação}
@@ -166,7 +163,6 @@ A classe que representa os filósofos.
 	\item \textbf{\textcolor{sblue}{void} digest} -- O filósofo está fazendo a digestão. Neste instante a \textit{thread} dorme por um tempo \textbf{fixo}.
 	\item \textbf{\textcolor{sblue}{void} think} -- O filósofo muda seu estado para pensando e começa a se concentrar.
 	\item \textbf{\textcolor{sblue}{void} focus} -- O filósofo se concentra nos seus pensamentos. Neste instante a \textit{thread} dorme por um tempo \textbf{arbitrário}.
-	\item \textbf{\textcolor{sblue}{void} release\_remaining\_threads} -- Caso alguma \textit{thread} ficou esperando um sinal, por segurança, sinaliza para estas que os garfos estão disponíveis.
 \end{itemize}
 
 \subsection{Enum: State}
@@ -184,10 +180,8 @@ A classe que implementa o monitor.
 \begin{itemize}
 	\item \textbf{\textcolor{sblue}{void} get\_forks} -- O filósofo tenta pegar o seu par de garfos.
 	\item \textbf{\textcolor{sblue}{void} put\_forks} -- O filósofo devolve o par de garfos que pegou.
-	\item \textbf{\textcolor{sblue}{void} release\_all} -- Para liberar quaisquer \textit{threads} que estejam aguardando um sinal que não chegou.
 	\item \textbf{\textcolor{sblue}{void} wait} -- \textit{Alias}.
 	\item \textbf{\textcolor{sblue}{void} signal} -- \textit{Alias}.
-	\item \textbf{\textcolor{sblue}{void} signal\_all} -- \textit{Alias}.
 \end{itemize}
 
 
