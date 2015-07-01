@@ -40,7 +40,7 @@ public class Monitor
 	{
 		lock[total_forks].lock();
 		try {
-			if(remaining <= 1) while(remaining <= 1) wait(more_forks);
+			while(remaining <= 1) wait(more_forks);
 			remaining--;
 		} finally {
 			lock[total_forks].unlock();
@@ -59,12 +59,15 @@ public class Monitor
         lock[(fork + 1) % forks.length].lock();
 		try {
 	        if(food > 0) while (forks[(fork + 1) % forks.length] == false) wait(available[(fork + 1) % forks.length]);
+			
 	        lock[total_forks].lock();
 			try {
+				while(remaining == 0) wait(more_forks);
 				remaining--;
 			} finally {
 				lock[total_forks].unlock();
 			}
+
 	        forks[(fork + 1) % forks.length] = false;
         } finally {
             lock[(fork + 1) % forks.length].unlock();
@@ -74,15 +77,13 @@ public class Monitor
 	//Put down the forks
 	public void put_forks(int fork, int food) throws InterruptedException
 	{	
-		//Put right fork
-		lock[(fork + 1) % forks.length].lock();
+        lock[total_forks].lock();
 		try {
-        	forks[(fork + 1) % forks.length] = true;
-        	signal(available[(fork + 1) % forks.length]);
-
-        } finally {
-            lock[(fork + 1) % forks.length].unlock();
-        }
+			remaining++;
+			signal(more_forks);
+		} finally {
+			lock[total_forks].unlock();
+		}
 
 		//Put left fork
 		lock[fork].lock();
@@ -95,13 +96,26 @@ public class Monitor
             lock[fork].unlock();
         }
 
-        lock[total_forks].lock();
+
+		lock[total_forks].lock();
 		try {
-			remaining+=2;
+			remaining++;
 			signal(more_forks);
 		} finally {
 			lock[total_forks].unlock();
 		}
+		
+		//Put right fork
+		lock[(fork + 1) % forks.length].lock();
+		try {
+        	forks[(fork + 1) % forks.length] = true;
+        	signal(available[(fork + 1) % forks.length]);
+
+        } finally {
+            lock[(fork + 1) % forks.length].unlock();
+        }
+
+
 	}
 
 	//Aliases
